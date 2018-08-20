@@ -1,0 +1,15 @@
+{
+  "name": "tristanbarrow.com",
+  "version": "1.0.0",
+  "description": "This is my personal website",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "Tristan Barrow",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

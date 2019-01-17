@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/byui-linux-lab', (req, res) => {
-    res.send('barrowt@157.201.194.203 -p 215');
+    res.send('barrowt@157.201.194.203 -p 215\n');
 });
 
 app.listen(PORT, console.log('Listening on PORT: ' + PORT));

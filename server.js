@@ -6,4 +6,8 @@ app.get('/', (req, res) => {
     res.send('Welcome to tristanbarrow.com');
 });
 
+app.get('/byui-linux-lab', (req, res) => {
+    res.send('barrowt@157.201.194.203 -p 215');
+});
+
 app.listen(PORT, console.log('Listening on PORT: ' + PORT));

@@ -1,0 +1,9 @@
+$font-normal: Helvetica, sans-serif;
+$font_serif: 'Times New Roman', Times, serif;
+$font-color-normal: red;
+$size: 16px;
+
+@mixin baseFont {
+    font-family: $font-normal;
+    color: $font-color-normal;
+}

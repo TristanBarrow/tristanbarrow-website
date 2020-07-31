@@ -1,13 +1,16 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.use(express.static(path.join(__dirname, 'served', 'public')));
+
 app.get('/', (req, res) => {
-    res.send('Welcome to tristanbarrow.com');
+    res.sendFile(path.join(__dirname, 'served', 'index.html'))
 });
 
-app.get('/test', (req, res) => {
-    res.send('This is a test\n');
-});
+app.get('/bundle.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'served', 'bundle.js'))
+})
 
 app.listen(PORT, console.log('Listening on PORT: ' + PORT));

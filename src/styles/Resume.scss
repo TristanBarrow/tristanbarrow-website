@@ -1,0 +1,63 @@
+@use './partials/size';
+@use './partials/font';
+
+.RESUME {
+    position: relative;
+    padding: size.$small;
+    margin-top: size.$small;
+    max-width: 800px;
+    min-width: 602px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: white;
+    border-radius: size.$tiny;
+    box-shadow: 0 0 30px #888;
+    transition: .3s;
+    @media only screen and (max-width: 850px) {
+        margin: 0;
+        background-color:white;
+        max-width: none;
+        box-shadow: none;
+        border-radius: 0;
+        transition: .3s;
+    }
+
+    &__TITLE {
+        font-size: size.$masive;
+    }
+    
+    &__HEADER {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &__INFO {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            width: 50%;
+
+            box-sizing: border-box;
+
+            &-ITEM {
+                // padding-left: size.$medium;
+                overflow-wrap: break-word;
+                @include font.label;
+            }
+        }
+
+        &__SKILLS {
+            box-sizing: border-box;
+            padding: size.$medium;
+            width: 50%;
+            font-size: size.$medium;
+            @include font.label;
+        }
+    }
+
+    &__SECTION-NAME {
+        font-size: size.$xx-large;
+        font-weight: bold;
+        margin-top: size.$small;
+    }
+}

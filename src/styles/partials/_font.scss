@@ -1,0 +1,31 @@
+@use './size';
+$normal: 'Times New Roman', Times, serif;
+
+@mixin style1 {
+    font-size: size.$large;
+    font-weight: bolder;
+    color: black;
+}
+
+@mixin style2 {
+    font-size: size.$large;
+    font-weight: normal;
+    font-style: italic;
+    color: black; 
+}
+
+@mixin style3 {
+    font-size: size.$large;
+    font-weight: normal;
+    color: black;
+}
+
+@mixin style4 {
+    color: gray
+}
+
+@mixin label {
+    &--LABEL {
+        font-weight: bold;
+    }
+}

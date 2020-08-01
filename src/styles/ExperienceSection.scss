@@ -1,0 +1,47 @@
+@use './partials/size';
+@use './partials/font';
+
+.EXPERIENCE-SECTION {
+    font-family: font.$normal;
+    margin: size.$small;
+    
+    &__HEADER {
+        &__ROW {
+            display: flex; 
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &__TITLE {
+            @include font.style1;
+        }
+
+        &__DATES {
+            @include font.style1;
+        }
+
+        &__ORG {
+            @include font.style2;
+        }
+
+        &__CITY {
+            @include font.style3;
+        }
+
+    }
+    
+    &__SKILLS {
+        @include font.style4;
+        @include font.label;
+    }
+
+    &__LIST {
+        margin: 0;
+        margin-left: 3rem;
+        padding: 0;
+    }
+
+    &__BULLETS {
+        margin: 0;
+    }
+}

@@ -1,5 +1,22 @@
+@use './partials/size';
 
+html {
+    font-size: 62.5%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background-color: #eee !important;
 
-.APP {
-    color: green;
+}
+
+body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background-color: #eee;
+}
+
+#app {
+    background-color: #eee;
+    font-size: size.$medium;
 }

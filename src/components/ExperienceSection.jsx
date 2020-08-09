@@ -15,16 +15,16 @@ const ExperienceSection = (props) => {
                     <div className='EXPERIENCE-SECTION__HEADER__CITY'>{props.city}</div>
                 </div>
             </div>
-            <LabeledText 
+            {props.skills && <LabeledText 
                 className='EXPERIENCE-SECTION__SKILLS'
                 label={props.skillTitle}
                 value={props.skills.join(', ')}
-            />
-            <ul className='EXPERIENCE-SECTION__LIST'>
+            />}
+            {props.bullets && <ul className='EXPERIENCE-SECTION__LIST'>
                 {props.bullets.map((bullet, index) => {
                     return <li key={index} className='EXPERIENCE-SECTION__BULLETS'>{bullet}</li>;
                 })}
-            </ul>
+            </ul>}
         </div>
     )
 }

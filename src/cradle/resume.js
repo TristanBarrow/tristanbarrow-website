@@ -1,56 +1,4 @@
-const SK = {
-    JAVASCRIPT: 'JavaScript', 
-    REACTJS: 'React JS', 
-    AJAX: 'Ajax',
-    ES6: 'ES6', 
-    NODEJS: 'Node JS', 
-    REDUX: 'Redux', 
-    REACT_NATIVE: 'React Native', 
-    SAGAS: 'Sagas', 
-    SCSS: 'SASS/SCSS', 
-    EXPRESS: 'Express', 
-    YOGA: 'Yoga', 
-    WEBPACK: 'Webpack', 
-    JEST: 'Jest', 
-    POSTGRES: 'PostgreSQL', 
-    FIREBASE: 'Firebase', 
-    AWS: 'AWS', 
-    SWIFT: 'Swift', 
-    SWIFT_UI: 'Swift UI', 
-    UI_KIT: 'UIKit', 
-    ANDROID: 'Android Studio', 
-    JAVA: 'Java', 
-    BASH: 'Bash', 
-    GDB: 'gdb', 
-    JMETER: 'jMeter',
-    VM_WARE: 'VMWare', 
-    VIM: 'Vim', 
-    PHP: 'Php', 
-    PYTHON: 'Python', 
-    NUMPY: 'Numpy', 
-    PANDAS: 'Pandas', 
-    CPP: 'C++', 
-    CLANG: 'C', 
-    OPEN_GL:'OpenGL', 
-    COCOS_2D: 'Cocos2d',
-    DOCKER: 'Docker', 
-    RUBY: 'Ruby', 
-    RAILS: 'Rails', 
-    LINUX: 'Linux',
-    ARDUINO: 'Arduino', 
-    PHOTOSHOP: 'Photoshop', 
-    ADOBE_XD: 'Adobe XD', 
-    GIT: 'Git', 
-    CALCULUS: 'Calculus', 
-    TRIG: 'Trigonometry',
-    LINEAR_ALGEBRA: 'Linear Algebra', 
-    ARGUMENTATIVE_LOGIC: 'Argumentative Logic', 
-    GEOMETRY: 'Geometry',
-    PROBABILITY: 'Probability',
-    STATISTICS: 'Statistics',
-    MACHINE_LEARNING: 'Machine Learning',
-}
-
+const SK = require('./skills.js');
 module.exports = {
     name: "Tristan Barrow",
     personalInfo: [
@@ -74,9 +22,6 @@ module.exports = {
             label: 'Website: ',
             value: 'www.tristanbarrow.com'
         },
-
-
-
     ],
     skills: SK,
     sections: [
@@ -173,7 +118,25 @@ module.exports = {
                 }
             ]
         },
-
+        {
+            name: 'Education',
+            experiences: [
+                {
+                    title: 'Bachelor of Science (Software Engineering)',
+                    org: 'BYU-Idaho',
+                    dates: '2016 - 2019',
+                    city: 'Rexburg, ID',
+                },
+                {
+                    title: 'Accociate Degree',
+                    org: 'Cascadia College',
+                    dates: '2016 - 2019',
+                    city: 'Bothell, WA',
+                    bullets: [ 'Completed with High School' ]
+                },
+            
+            ]
+        },
 
     ]
 

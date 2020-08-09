@@ -6,13 +6,18 @@
     padding: size.$small;
     margin-top: size.$small;
     max-width: 800px;
-    min-width: 602px;
     left: 50%;
     transform: translate(-50%);
     background-color: white;
     border-radius: size.$tiny;
     box-shadow: 0 0 30px #888;
     transition: .3s;
+    @media only screen and (max-width: 635px) {
+        min-width: 335px;
+        left: 0;
+        transform: none;
+    }
+
     @media only screen and (max-width: 850px) {
         margin: 0;
         background-color:white;
@@ -30,17 +35,26 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        @media only screen and (max-width: 635px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            &__INFO {
+                width: 100%;
+            }
+        }
 
         &__INFO {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             width: 50%;
-
             box-sizing: border-box;
+            @media only screen and (max-width: 635px) {
+                width: 100%;
+            }
 
             &-ITEM {
-                // padding-left: size.$medium;
                 overflow-wrap: break-word;
                 @include font.label;
             }
@@ -52,6 +66,11 @@
             width: 50%;
             font-size: size.$medium;
             @include font.label;
+            @media only screen and (max-width: 635px) {
+                width: 100%;
+                padding: 0;
+                padding-top: size.$medium;
+            }
         }
     }
 

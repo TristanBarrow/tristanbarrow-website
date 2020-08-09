@@ -8,19 +8,23 @@ module.exports = {
         },
         {
             label: 'Email: ',
-            value: 'tristanmarkbarrow@gmail.com'
+            value: 'tristanmarkbarrow@gmail.com',
+            link: ''
         },
         {
             label: 'Github: ',
-            value: 'github.com/TristanBarrow'
+            value: 'www.github.com/TristanBarrow',
+            link: 'https://github.com/TristanBarrow'
         },
         {
             label: 'LinkedIn: ',
-            value: 'www.linkedin.com/in/tristanmbarrow'
+            value: 'www.linkedin.com/in/tristanmbarrow',
+            link: 'https://www.linkedin.com/in/tristanmbarrow/'
         },
         {
-            label: 'Website: ',
-            value: 'www.tristanbarrow.com'
+            label: 'Website Home: ',
+            value: 'www.tristanbarrow.com',
+            link: 'http://tristanbarrow.com/'
         },
     ],
     skills: SK,

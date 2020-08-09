@@ -1,6 +1,7 @@
 import React from 'react';
 import ExperienceSection from './ExperienceSection.jsx';
 import LabeledText from './LabeledText.jsx';
+import LabeledLink from './LabeledLink.jsx';
 import '../styles/Resume.scss';
 const resume = require('../cradle/resume');
 
@@ -13,14 +14,28 @@ const Resume = () => {
             <div className='RESUME__HEADER'>
                 <div className='RESUME__HEADER__INFO'>
                     {resume.personalInfo.map((info, info_index) => {
-                        return (
-                            <LabeledText
-                                key={info_index}
-                                className='RESUME__HEADER__INFO-ITEM'
-                                label={info.label}
-                                value={info.value}
-                            />
-                        );
+
+                        if (info.link) {
+                            return (    
+                                <LabeledLink
+                                    key={info_index}
+                                    className='RESUME__HEADER__INFO-ITEM'
+                                    label={info.label}
+                                    value={info.value}
+                                    link={info.link}
+                                />
+                            );
+                        } else {
+                            return (
+                                <LabeledText
+                                    key={info_index}
+                                    className='RESUME__HEADER__INFO-ITEM'
+                                    label={info.label}
+                                    value={info.value}
+                                />  
+                            );
+                        }
+                        
                     })}
                 </div>
                 <LabeledText 

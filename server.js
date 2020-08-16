@@ -1,22 +1,31 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const PORT = process.env.PORT || 8080;
-
-const getScriptures = require('./src/api/scriptures.js');
+const PORT = process.env.PORT || 8000;
+const index = require('./src/api/index.html.js');
+const getScriptures = require('./src/api/getScriptures.js');
+const getRandomScripture = require('./src/api/getRandomScripture.js');
 
 app.use(express.static(path.join(__dirname, 'served', 'public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'served', 'index.html'))
+    res.redirect('/app')
+});
+
+app.get('/app', (req, res) => {
+    res.send(index());
+});
+
+app.get('/app/*', (req, res) => {
+    res.send(index());
 });
 
 app.get('/bundle.js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'served', 'bundle.js'))
-})
+    res.sendFile(path.join(__dirname, 'served', 'bundle.js'));
+});
 
 app.get('/api', (req, res) => {
-    res.send('an api will go here')
+    res.redirect('/app/resume')
 });
 
 app.get(`/api/scriptures/:test/:book/:chapter/:verse`, (req, res) => {
@@ -40,15 +49,19 @@ app.get(`/api/scriptures/:test/:book`, (req, res) => {
     res.json(s);
 });
 
-app.get(`/api/scriptures/:test`, (req, res, next) => {
+app.get(`/api/scriptures/:test`, (req, res) => {
     const { test } = req.params;
+    if (test === 'random') {
+        res.json(getRandomScripture());
+        return;
+    } 
     const s = getScriptures(test, null);
     if (s === null) throw new Error (`404 - failed to find testament '${test}'`)
     res.json(s);
 });
 
 app.get('*', function(req, res){
-    res.send('what???');
+    res.send("Catch All For Server")
 });
 
 app.listen(PORT, console.log('Listening on PORT: ' + PORT));

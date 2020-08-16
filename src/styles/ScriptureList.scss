@@ -1,0 +1,42 @@
+@use './partials/font.scss';
+@use './partials/size.scss';
+
+.SCRIPTURE-LIST {
+    background-color: #1b262c;
+    &__ROW {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: size.$x-small;
+        margin-bottom: size.$x-small;
+        border-bottom: 1px solid #bbe1fa;
+        
+    }
+
+    &__ITEM {
+        text-decoration: none;
+        color: white;
+        background-color: #0f4c75;
+        padding: size.$xxx-small;
+        border-radius: 3px;
+        font-family: font.$basic; 
+        box-shadow: 0 0 1rem .2rem #0f4c75;
+        transition: .3s;
+        margin: size.$xxx-small;
+        user-select: none;
+
+        &:hover {
+            background-color: #3282b8;
+            box-shadow: 0 0 1rem .4rem #3282b8;
+            transition: .3s;
+        }
+
+        &--SELECTED {
+            background-color: #3282b8;
+        }
+        
+    }
+
+}

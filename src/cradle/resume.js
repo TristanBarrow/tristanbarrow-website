@@ -21,11 +21,6 @@ module.exports = {
             value: 'www.linkedin.com/in/tristanmbarrow',
             link: 'https://www.linkedin.com/in/tristanmbarrow/'
         },
-        {
-            label: 'Website Home: ',
-            value: 'www.tristanbarrow.com',
-            link: 'http://tristanbarrow.com/'
-        },
     ],
     skills: SK,
     sections: [
@@ -55,11 +50,11 @@ module.exports = {
                         SK.RAILS,
                         SK.TRIG
                     ],
-                    bullets: [
-                        'Simplified debugging developer tool resulting in same-day resolutions to customer complaints',
-                        'Constructed a chat bubble library using trigonometric equations plus dynamic SVGs for a better customer experience in ReactJS, resulting in natural-looking chat bubbles, not found in any libraries',
-                        'Utilized React’s conditional rendering and controlled input systems to respond to dynamically changing and unknown input form requirements'
-                    ]
+                    // bullets: [
+                    //     'Simplified debugging developer tool resulting in same-day resolutions to customer complaints',
+                    //     'Constructed a chat bubble library using trigonometric equations plus dynamic SVGs for a better customer experience in ReactJS, resulting in natural-looking chat bubbles, not found in any libraries',
+                    //     'Utilized React’s conditional rendering and controlled input systems to respond to dynamically changing and unknown input form requirements'
+                    // ]
                 },
                 {
                     title: 'Frontend Developer Intern',

@@ -3,6 +3,7 @@ import ExperienceSection from './ExperienceSection.jsx';
 import LabeledText from './LabeledText.jsx';
 import LabeledLink from './LabeledLink.jsx';
 import '../styles/Resume.scss';
+import { Link } from 'react-router-dom';
 const resume = require('../cradle/resume');
 
 const skillTitle = 'Skills Used: ';
@@ -37,6 +38,14 @@ const Resume = () => {
                         }
                         
                     })}
+                    <div>
+                        <span className='RESUME__HEADER__INFO-ITEM--LABEL'>
+                                {'Website: '}
+                        </span>
+                        <Link to='/' className='RESUME__HEADER__INFO-ITEM'>
+                            www.tristanbarrow.com
+                        </Link>
+                    </div>
                 </div>
                 <LabeledText 
                     className='RESUME__HEADER__SKILLS'

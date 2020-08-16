@@ -1,5 +1,6 @@
 @use './size';
 $normal: 'Times New Roman', Times, serif;
+$basic: Verdana, Geneva, Tahoma, sans-serif;
 
 @mixin style1 {
     font-size: size.$large;

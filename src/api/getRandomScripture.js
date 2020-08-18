@@ -5,9 +5,11 @@ const scriptures = {
     ot: require('../cradle/scriptures/old-testament-flat.json'),
     pgp: require('../cradle/scriptures/pearl-of-great-price-flat.json'),  
 }
+
 const getRandomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
 }
+
 module.exports = () => {
     let testament = null;
     switch (getRandomInt(5)) {

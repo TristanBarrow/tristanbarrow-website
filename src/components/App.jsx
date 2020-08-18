@@ -24,7 +24,7 @@ class App extends Component {
                         <Sciptures />
                     </Route> */}
                     <Route path='/'>
-                        <div>home</div>
+                        <Resume />
                     </Route>
                 </Switch>
             </Router>

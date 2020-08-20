@@ -31,6 +31,7 @@ app.get('/api/users', (req, res) => {
         res.send('You are on local development environment');
     } else if (process.env.PRODUCTION === 'YES') {
         user.getUsers((users) => {
+            console.log(users)
             res.json(users);
         });
     } else {

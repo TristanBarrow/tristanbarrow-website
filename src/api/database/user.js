@@ -10,8 +10,9 @@ const SALT_ROUNDS = 10;
 // }
 
 const getUsers = (callback) => {
-    const query = 'SELECT username FROM users';
-    pool.query(query, (err, result) => {
+    const query = 'SELECT * FROM users;';
+    pool.query(query, null, (err, result) => {
+        console.log(result)
         callback(err, result.rows);
     });
 }

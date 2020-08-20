@@ -27,16 +27,10 @@ app.get('/bundle', (req, res) => {
 });
 
 app.get('/api/users', (req, res) => {
-    if (process.env.PRODUCTION === 'NO') {
-        res.send('You are on local development environment');
-    } else if (process.env.PRODUCTION === 'YES') {
-        user.getUsers((users) => {
-            console.log(users)
-            res.json(users);
-        });
-    } else {
-        throw new Error('Unknown Environment');
-    }
+    user.getUsers((err, users) => {
+        // console.log(users)
+        res.json(users);
+    });
 });
 
 app.get('/api', (req, res) => {

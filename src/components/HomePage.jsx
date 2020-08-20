@@ -1,6 +1,5 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
-const 
 
 const HomePage = (props) => {
     return (

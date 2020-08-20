@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -5,6 +6,7 @@ const PORT = process.env.PORT || 8000;
 const index = require('./src/api/index.html.js');
 const getScriptures = require('./src/api/getScriptures.js');
 const getRandomScripture = require('./src/api/getRandomScripture.js');
+const user = require('./src/api/database/user.js');
 
 app.use(express.static(path.join(__dirname, 'served', 'public')));
 
@@ -19,13 +21,25 @@ app.get('/app', (req, res) => {
 app.get('/app/*', (req, res) => {
     res.send(index());
 });
-
-app.get('/bundle.js', (req, res) => {
+ 
+app.get('/bundle', (req, res) => {
     res.sendFile(path.join(__dirname, 'served', 'bundle.js'));
 });
 
+app.get('/api/users', (req, res) => {
+    if (process.env.PRODUCTION === 'NO') {
+        res.send('You are on local development environment');
+    } else if (process.env.PRODUCTION === 'YES') {
+        user.getUsers((users) => {
+            res.json(users);
+        });
+    } else {
+        throw new Error('Unknown Environment');
+    }
+});
+
 app.get('/api', (req, res) => {
-    res.redirect('/app/resume')
+    res.redirect('/app')
 });
 
 app.get(`/api/scriptures/:test/:book/:chapter/:verse`, (req, res) => {

@@ -7,6 +7,8 @@ import {
     Route,
 } from 'react-router-dom';
 import '../styles/App.scss';
+import HomePage from './HomePage.jsx';
+import resume from '../cradle/resume.js';
 
 class App extends Component {
     constructor(props) {
@@ -20,9 +22,6 @@ class App extends Component {
                     <Route path='/resume'>
                         <Resume />
                     </Route>
-                    {/* <Route path='/scriptures'>
-                        <Sciptures />
-                    </Route> */}
                     <Route path='/'>
                         <Resume />
                     </Route>

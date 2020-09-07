@@ -1,0 +1,60 @@
+@use './partials/font.scss';
+@use './partials/comp.scss';
+@use './partials/colors.scss';
+@use './partials/size.scss';
+@use 'sass:color';
+
+$login-short: 25rem;
+$login-long: $login-short * 1.618;
+
+.PAGE {
+    width: 100%;
+    height: inherit;
+    background-image: linear-gradient(
+            to top right, 
+            colors.$light-30,
+            colors.$light
+        );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.LOGIN {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30rem;
+    background-color: white;
+    padding: 3rem;
+
+    &__TITLE {
+        @include font.title_basic;
+        margin-bottom: size.$small;
+    }
+
+    &__BUTTON {
+        @include comp.button();
+        @include comp.button_text();
+        margin-bottom: size.$small;
+    }
+
+    &__INPUT {
+        @include comp.input_main;
+        margin-bottom: size.$small;
+        padding-left: size.$xx-small;
+    }
+
+    &__LINK {
+        @include comp.link_main;
+        // margin-bottom: size.$small;
+    }
+
+    &__ERROR {
+        color: red;
+        font-size: size.$small;
+        padding-bottom: size.$xx-small;
+    }
+
+}

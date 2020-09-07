@@ -1,0 +1,14 @@
+@use './partials/comp.scss';
+@use './partials/colors.scss';
+@use './partials/font.scss';
+@use './partials/size.scss';
+
+
+.BUTTON {
+    &--MAIN {
+        @include comp.button();
+        @include comp.button_text();
+        
+    }
+
+}

@@ -18,7 +18,6 @@ const bookmarks = require('./src/api/database/bookmarks.js');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-
 app.use(session({
     store: new pgSession({ pool }),
     secret: process.env.COOKIE_SECRET,
@@ -48,73 +47,82 @@ app.get('/bundle', (req, res) => {
 app.post('/api/login', jsonParser, (req, res) => {
     user.login(req.body.username, req.body.password, (err, result) => {
         if (err) {
-            if (err.fatal=== false) {
-                res.send(err.message)
-                return;
-            }
+            console.error(err);
+            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+            throw new Error(err); 
         }
-        try {
-            if (result === true) {
-                req.session.loggedIn = true;
-                req.session.user = req.body.username;
-            }
-            res.json({success: result});
-        } catch (e) {
-            console.error(e);
-            // res.setStatus(500)
-
-            res.send({message: 'User does not exist'});
-        }
+        if (result.success) {
+            req.session.loggedIn = true;
+            req.session.username = result.username;
+            req.session.isAdmin = result.isAdmin;
+            res.json({ success: true, message: "Logged In"});
+        } else {
+            res.json(result);
+        }   
     });
 });
 
-app.get('/api/user/current', (req, res) => {
-    if (req.session.loggedIn) {
-        res.json({
-            loggedIn: req.session.loggedIn,
-            user: req.session.user
-        });
-    } else {
-        res.json({
-            loggedIn: false,
-            user: null
-        });
-    }
-    
+app.get('/api/user/status', auth.std, (req, res) => {
+    res.json({
+        success: true, 
+        user: req.session.username,
+        isAdmin: req.session.isAdmin
+    });
 });
 
 app.get('/api/logout', (req, res) => {
-    req.session.loggedIn = false;
-    req.session.user = null;
+    req.session.destroy();
     res.json({ 
         success: true,
+        message: 'Logged out'
     });
 })
 
 app.post('/api/user/create', jsonParser, (req, res) => {
     user.createUser(req.body.username, req.body.password, (err, result) => {
-        if (err) console.error(err);
-        res.json(result);
+        if (err) {
+            console.error(err);
+            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+            throw new Error(err);
+        } else {
+            res.json(result);
+        }
     })
 });
 
 app.get('/api/users', auth.tb, (req, res) => {
     user.getUsers((err, users) => {
-        // console.log(users)
-        res.json(users);
+        if (err) {
+            console.error(err);
+            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+            throw new Error(err);
+        } else {
+            res.json(users);
+        }
     });
 });
 
 app.get('/api/bookmarks', auth.std, (req, res) => {
     bookmarks.getBookmarks(req.session.user, (err, response) => {
+        if (err) {
+            console.error(err);
+            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+            throw new Error(err); 
+        }
         res.json(response);
     });
 });
 
 app.get('/api/bookmark', auth.std, (req, res) => {
     bookmarks.getBookmark('mark', (err, response) => {
-        console.log(response)
-        res.json(response);
+        if (err) {
+            console.error(err);
+            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+            throw new Error(err);
+        } else {
+            console.log(response);
+            res.json(response);
+        }
     });
 });
 

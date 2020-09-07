@@ -1,5 +1,14 @@
+@use 'sass:color';
+
 $light: #338bd5;
+$light-20: color.adjust($light, $hue: 15deg); 
+$light-30: color.adjust($light, $hue: 30deg); 
+
 $dark: #001F93;
+$dark-20: color.adjust($dark, $hue: -10deg);
+
 $grey-light: #414141;
 $grey-mid: #2e2e2e;
 $grey-dark: #1b1b1b;
+$white: #fff;
+$xx-light-gray: #eee;

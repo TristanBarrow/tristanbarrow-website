@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Resume from './Resume.jsx';
-import Sciptures from './Scriptures.jsx';
+import Scriptures from './Scriptures.jsx';
 import HomePage from './HomePage.jsx';
+import Page404 from './Page404.jsx';
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,11 +12,7 @@ import '../styles/App.scss';
 import Login from './Login.jsx';
 import CreateAccount from './CreateAccount.jsx';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-    }
-
+const App = {
     render() {
         return (
             <Router basename='/app'>
@@ -29,15 +26,17 @@ class App extends Component {
                     <Route path='/create_account'>
                         <CreateAccount />
                     </Route>
+                    <Route path='/s'>
+                        <Scriptures />
+                    </Route>
+                    <Route path='/404'>
+                        <Page404 />
+                    </Route>
                     <Route path='/home'>
                         <HomePage />
                     </Route>
-                    <Route>
-                        <Resume />
-                    </Route>
                 </Switch>
             </Router>
-            
         );
     }
 }

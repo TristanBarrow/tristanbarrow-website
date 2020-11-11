@@ -1,4 +1,6 @@
-@use './size';
+@use './size.scss';
+@use './colors.scss';
+
 $normal: 'Times New Roman', Times, serif;
 $basic: Verdana, Geneva, Tahoma, sans-serif;
 
@@ -6,6 +8,20 @@ $basic: Verdana, Geneva, Tahoma, sans-serif;
     font-family: $basic;
     font-size: size.$large;
     color: black;
+}
+
+@mixin link {
+    text-decoration: none;
+    color: colors.$light;
+    font-family: $basic;
+    margin: size.$x-small;
+    transition: .25s;
+
+    &:hover {
+        cursor: pointer;
+        color: colors.$dark;
+        transition: .25s;
+    }
 }
 
 @mixin style1 {
@@ -29,6 +45,13 @@ $basic: Verdana, Geneva, Tahoma, sans-serif;
 
 @mixin style4 {
     color: gray
+}
+
+@mixin basic {
+    font-family: $basic;
+    font-size: size.$small;
+    font-weight: normal;
+    color: black; 
 }
 
 @mixin label {

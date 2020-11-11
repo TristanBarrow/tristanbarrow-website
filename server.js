@@ -29,11 +29,11 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'served', 'public')));
 
 app.get('/', (req, res) => {
-    res.redirect('/app')
+    res.redirect('/app/home')
 });
 
 app.get('/app', (req, res) => {
-    res.send(index());
+    res.redirect('/app/home')
 });
 
 app.get('/app/*', (req, res) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTextInput, usePasswordInput } from '../hooks/input.js';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import '../styles/Login.scss';
 
 const login = require('../fetch-req/user/login.js');
@@ -17,7 +17,7 @@ const Login = (props) => {
                 if (!data.success) {
                     setError(data)
                 } else {
-
+                    props.history.push('/home');
                 }
             })
         } else {
@@ -55,9 +55,6 @@ const Login = (props) => {
         /* TODO: Forgot Password... 
             <Link className='LOGIN__FORGOT-PASSWORD'>Forgot Password</Link> 
         */
-
-
-    
 }
 
-export default Login;
+export default withRouter(Login);

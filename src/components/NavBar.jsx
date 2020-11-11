@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import UserIcon from './UserIcon.jsx';
 import '../styles/NavBar.scss';
+import Dropdown from './Dropdown.jsx';
 
 const links = {
     home: 'Home',
@@ -8,7 +10,15 @@ const links = {
     resume: 'Resume'
 }
 
+const dropdown = {
+    LOGOUT: 'Logout',
+    PROFILE_INFO: 'Profile Info',
+
+}
+
 const NavBar = (props) => {
+    const [isShowingDropdown, showDropdown] = useState(false);
+    
     return (
         <div className='NAV_BAR'>
             {Object.keys(links).map(link => {
@@ -16,7 +26,7 @@ const NavBar = (props) => {
 
                 if (link === 'home') {
                     return (
-                        <Link 
+                        <Link
                             key={link}
                             className={`NAV_BAR__LINK${selected}`} 
                             to='/'
@@ -35,9 +45,17 @@ const NavBar = (props) => {
                     </Link>
                 );
             })}
-            {/* 
-            <Link className='NAV_BAR__LINK' to='/blog'>Blog</Link>
-            <Link className='NAV_BAR__LINK' to='/resume'>Resume</Link> */}
+            
+            <UserIcon 
+                tabIndex='0' 
+                onBlur={()=> setTimeout(() => showDropdown(false), 200)} 
+                    // this setTimout() allows the dropdown to be clicked. 
+                    // Without it on blur will stop showing the dropdown before 
+                    // the click registers
+                onClick={() => showDropdown(true)}
+            />
+
+            {isShowingDropdown && <Dropdown />}
         </div>
     );
 }

@@ -1,0 +1,27 @@
+@use './partials/size.scss';
+@use './partials/font.scss';
+@use './partials/colors.scss';
+.DROPDOWN {
+    position: fixed;
+    top: size.$x-small * 4 + .1rem;
+    background-color: white;
+    width: 14rem;
+    box-shadow: 0 3px 10px gray;
+    border-radius: 1px;
+    
+    &__ITEM {
+        @include font.basic;
+        margin: size.$xxx-small;
+        padding: size.$xxx-small;
+        transition: .3s;
+        
+        &:hover {
+            background: colors.$xx-light-gray;
+            color: colors.$grey-dark;
+            transition: .3s;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        
+    }
+}

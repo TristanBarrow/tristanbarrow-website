@@ -1,27 +1,37 @@
 @use './partials/colors.scss';
+@use './partials/size.scss';
+@use './partials/font.scss';
 
 .NAV_BAR {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     background-color: white;
     box-shadow: 0 0 1rem #aaa;
 
     &__LINK {
-        text-decoration: none;
-        color: colors.$light;
-        font-family: sans-serif;
-        margin: 1rem;
-        transition: .25s;
+        @include font.link;
+        // text-decoration: none;
+        // color: colors.$light;
+        // font-family: sans-serif;
+        // margin: size.$x-small;
+        // transition: .25s;
 
-        &:hover {
-            color: colors.$dark;
-            transition: .25s;
-        }
+        // &:hover {
+        //     color: colors.$dark;
+        //     transition: .25s;
+        // }
 
         &--SELECTED {
             text-decoration: underline;
         }
 
+    }
+    &__USER {
+        text-decoration: none;
+        color: colors.$grey-light;
+        font-family: sans-serif;
+        margin: size.$x-small;
+        margin-right: size.$xx-large;
     }
 }

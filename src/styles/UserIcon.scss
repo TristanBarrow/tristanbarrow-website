@@ -1,0 +1,32 @@
+@use './partials/font.scss';
+@use './partials/size.scss';
+@use './partials/colors.scss';
+
+.USER_ICON {
+    display: flex;
+    flex-direction: row;
+
+    &__ICON {
+        margin-top: 1.4rem;
+    }
+
+    &__ICON--ADMIN {
+        margin-top: .95rem;
+    }
+
+    &__NAME {
+        @include font.link;
+    }
+
+    &__NAME--ADMIN {
+        @include font.link;
+        margin: size.$xx-small;
+    }
+
+    &--ADMIN {
+        display: flex;
+        flex-direction: row;
+        border: size.$xxx-small solid colors.$light-20;
+
+    }    
+}

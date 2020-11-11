@@ -74,9 +74,6 @@ const Resume = () => {
                     </React.Fragment>
                 )
             })}
-            
-
-            
         </div>
 
     );

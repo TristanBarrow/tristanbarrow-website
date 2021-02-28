@@ -1,9 +1,9 @@
 const scriptures = {
-    bom: require('../cradle/scriptures/book-of-mormon-reference.json'),
-    dnc: require('../cradle/scriptures/doctrine-and-covenants-reference.json'),
-    nt: require('../cradle/scriptures/new-testament-reference.json'),
-    ot: require('../cradle/scriptures/old-testament-reference.json'),
-    pgp: require('../cradle/scriptures/pearl-of-great-price-reference.json'),  
+    bom: require('../../cradle/scriptures/book-of-mormon-reference.json'),
+    dnc: require('../../cradle/scriptures/doctrine-and-covenants-reference.json'),
+    nt: require('../../cradle/scriptures/new-testament-reference.json'),
+    ot: require('../../cradle/scriptures/old-testament-reference.json'),
+    pgp: require('../../cradle/scriptures/pearl-of-great-price-reference.json'),  
 }
 
 module.exports = (test, book, chapter, verse) => {

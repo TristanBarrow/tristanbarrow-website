@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "start": "node server.js",
-    "build": "webpack --mode=production",
+    "build:prod": "webpack --mode=production",
+    "build": "webpack --mode=development",
     "watch": "webpack --watch --mode=development",
     "devserver": "live-server ./served",
     "db:init": "bash ./database/init.sh"
@@ -33,6 +34,7 @@
     "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.8.3",
+    "@types/styled-components": "^5.1.7",
     "babel": "^6.23.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.0",
@@ -43,6 +45,8 @@
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.2.2",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
   }

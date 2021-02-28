@@ -1,7 +1,8 @@
+const { resolve } = require('path');
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.jsx',
+    entry: './src/frontend/index.tsx',
     output: {
         path: path.resolve(__dirname, 'served'),
         filename: 'bundle.js'
@@ -13,12 +14,17 @@ module.exports = {
                 use: 'raw-loader',
             },
             {
-                test: /\.(js|jsx)$/,
+                test: /\.tsx?$/,
+                use: 'ts-loader',
                 exclude: /node_modules/,
-                use: {
-                  loader: "babel-loader"
-                }
             },
+            // {
+            //     test: /\.(js|jsx|tsx)$/,
+            //     exclude: /node_modules/,
+            //     use: {
+            //       loader: "babel-loader"
+            //     }
+            // },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
@@ -31,5 +37,8 @@ module.exports = {
                 ],
             }
         ]
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js', '.jsx']
     }
 }

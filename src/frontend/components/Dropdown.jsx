@@ -21,6 +21,7 @@ const Dropdown = (props) => {
             }
         },
     ];
+
     return (
         <div className='DROPDOWN'>
             {arr.map((item) => {

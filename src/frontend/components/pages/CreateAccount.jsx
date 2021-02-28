@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTextInput, usePasswordInput } from '../hooks/input.js';
+import { useTextInput } from '../../hooks/useTextInput';
+import { usePasswordInput } from '../../hooks/usePasswordInput'
 import { withRouter } from 'react-router-dom';
-import '../styles/Login.scss';
+import '../../styles/Login.scss';
 
-const createUser = require('../fetch-req/user/createUser.js');
+const createUser = require('../../fetch-req/user/createUser.js');
 
 const CreateAccount = (props) => {
     const { value:username, bind: bindUsername, clear:clearUsername } = useTextInput('', 'Username');

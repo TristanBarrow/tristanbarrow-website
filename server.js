@@ -3,20 +3,18 @@ const express = require('express');
 const app = express();
 
 const session = require('express-session');
-const pool = require('./src/api/database/pool.js').pool;
+const pool = require('./src/backend/api/database/pool.js').pool;
 const pgSession = require('connect-pg-simple')(session);
-const auth = require('./src/middleware/auth.js');
+const auth = require('./src/backend/middleware/auth.js');
 
 const path = require('path');
+const application = require('./src/backend/api/endpoints/application.js');
+const user = require('./src/backend/api/endpoints/user.js');
 
-const index = require('./src/api/index.html.js');
-const getScriptures = require('./src/api/getScriptures.js');
-const getRandomScripture = require('./src/api/getRandomScripture.js');
-const user = require('./src/api/database/user.js');
-const bookmarks = require('./src/api/database/bookmarks.js');
-
-const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
+// const index = require('./src/backend/api/index.html.js');
+const getScriptures = require('./src/backend/api/getScriptures.js');
+const getRandomScripture = require('./src/backend/api/getRandomScripture.js');
+const bookmarks = require('./src/backend/api/database/bookmarks.js');
 
 app.use(session({
     store: new pgSession({ pool }),
@@ -28,107 +26,70 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'served', 'public')));
 
-app.get('/', (req, res) => {
-    res.redirect('/app/home')
-});
-
-app.get('/app', (req, res) => {
-    res.redirect('/app/home')
-});
-
-app.get('/app/*', (req, res) => {
-    res.send(index());
-});
- 
 app.get('/bundle', (req, res) => {
     res.sendFile(path.join(__dirname, 'served', 'bundle.js'));
 });
 
-app.post('/api/login', jsonParser, (req, res) => {
-    user.login(req.body.username, req.body.password, (err, result) => {
-        if (err) {
-            console.error(err);
-            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
-            throw new Error(err); 
-        }
-        if (result.success) {
-            req.session.loggedIn = true;
-            req.session.username = result.username;
-            req.session.isAdmin = result.isAdmin;
-            res.json({ success: true, message: "Logged In"});
-        } else {
-            res.json(result);
-        }   
-    });
-});
+application(app);
+user(app);
 
-app.get('/api/user/status', auth.std, (req, res) => {
-    res.json({
-        success: true, 
-        user: req.session.username,
-        isAdmin: req.session.isAdmin
-    });
-});
+// app.post('/api/login', jsonParser, (req, res) => {
+//     user.login(req.body.username, req.body.password, (err, result) => {
+//         if (err) {
+//             console.error(err);
+//             res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+//             throw new Error(err); 
+//         }
+//         if (result.success) {
+//             req.session.loggedIn = true;
+//             req.session.username = result.username;
+//             req.session.isAdmin = result.isAdmin;
+//             res.json({ success: true, message: "Logged In"});
+//         } else {
+//             res.json(result);
+//         }   
+//     });
+// });
 
-app.get('/api/logout', (req, res) => {
-    req.session.destroy();
-    res.json({ 
-        success: true,
-        message: 'Logged out'
-    });
-})
+// app.get('/api/user/status', auth.std, (req, res) => {
+//     res.json({
+//         success: true, 
+//         user: req.session.username,
+//         isAdmin: req.session.isAdmin
+//     });
+// });
 
-app.post('/api/user/create', jsonParser, (req, res) => {
-    user.createUser(req.body.username, req.body.password, (err, result) => {
-        if (err) {
-            console.error(err);
-            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
-            throw new Error(err);
-        } else {
-            res.json(result);
-        }
-    })
-});
+// app.get('/api/logout', (req, res) => {
+//     req.session.destroy();
+//     res.json({ 
+//         success: true,
+//         message: 'Logged out'
+//     });
+// })
 
-app.get('/api/users', auth.tb, (req, res) => {
-    user.getUsers((err, users) => {
-        if (err) {
-            console.error(err);
-            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
-            throw new Error(err);
-        } else {
-            res.json(users);
-        }
-    });
-});
+// app.post('/api/user/create', jsonParser, (req, res) => {
+//     user.createUser(req.body.username, req.body.password, (err, result) => {
+//         if (err) {
+//             console.error(err);
+//             res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+//             throw new Error(err);
+//         } else {
+//             res.json(result);
+//         }
+//     })
+// });
 
-app.get('/api/bookmarks', auth.std, (req, res) => {
-    bookmarks.getBookmarks(req.session.user, (err, response) => {
-        if (err) {
-            console.error(err);
-            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
-            throw new Error(err); 
-        }
-        res.json(response);
-    });
-});
-
-app.get('/api/bookmark', auth.std, (req, res) => {
-    bookmarks.getBookmark('mark', (err, response) => {
-        if (err) {
-            console.error(err);
-            res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
-            throw new Error(err);
-        } else {
-            console.log(response);
-            res.json(response);
-        }
-    });
-});
-
-app.get('/api', (req, res) => {
-    res.redirect('/app')
-});
+// app.get('/api/users', auth.tb, (req, res) => {
+//     user.getUsers((err, users) => {
+//         if (err) {
+//             console.error(err);
+//             res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
+//             throw new Error(err);
+//         } else {
+//             res.json(users);
+//         }
+//     });
+// });
 
 app.get(`/api/scriptures/:test/:book/:chapter/:verse`, (req, res) => {
     const { test, book, chapter, verse } = req.params;

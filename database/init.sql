@@ -1,7 +1,6 @@
-DROP TABLE users_bookmarks;
-DROP TABLE users;
-DROP TABLE session;
-DROP TABLE bookmarks;
+DROP TABLE personal_info CASCADE;
+DROP TABLE users CASCADE;
+DROP TABLE session CASCADE;
 
 CREATE TABLE users(
   id SERIAL PRIMARY KEY,
@@ -10,24 +9,23 @@ CREATE TABLE users(
   isAdmin BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE bookmarks(
+CREATE TABLE personal_info(
   id SERIAL PRIMARY KEY,
-  bookmark VARCHAR(225) NOT NULL,
-  UNIQUE ("bookmark")
+  user_id INT,
+  label VARCHAR(255) NOT NULL,
+  value VARCHAR(255) NOT NULL,
+  link VARCHAR(255),
+  CONSTRAINT fk_user
+    FOREIGN KEY(user_id)
+      REFERENCES users(id)
 );
 
-CREATE TABLE users_bookmarks(
-  id SERIAL PRIMARY KEY,
-  "user" int REFERENCES users(id) NOT NULL,
-  bookmark int REFERENCES bookmarks(id) NOT NULL,
-  UNIQUE ("user", "bookmark")
-);
-
--- INSERT INTO users(username, password)
--- VALUES ('Tristan', 'CoolThings');
-
-INSERT INTO bookmarks(bookmark) VALUES ('mark');
-
+INSERT INTO personal_info(label, value, link)
+VALUES 
+('Phone', '(425) 420-8903', NULL),
+('Email', 'tristanmarkbarrow@gmail.com', NULL),
+('GitHub', 'www.github.com/TristanBarrow', 'https://github.com/TristanBarrow'),
+('LinkedIn', 'www.linkedin.com/in/tristanmbarrow', 'https://www.linkedin.com/in/tristanmbarrow/');
 
 
 CREATE TABLE "session" (

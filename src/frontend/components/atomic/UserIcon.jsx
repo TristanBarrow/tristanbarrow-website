@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import SyncLoader from 'react-spinners/SyncLoader';
-import Person from '@material-ui/icons/Person';
 import { withRouter } from 'react-router-dom';
 import '../styles/UserIcon.scss';
 
-const getUser = require('../fetch-req/user/getUser.js');
+const getUser = require('../../fetch-req/user/getUser.js');
 
 const LOGIN = 'Login';
 

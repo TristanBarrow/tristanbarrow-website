@@ -9,7 +9,6 @@ module.exports = {
         {
             label: 'Email: ',
             value: 'tristanmarkbarrow@gmail.com',
-            link: ''
         },
         {
             label: 'Github: ',

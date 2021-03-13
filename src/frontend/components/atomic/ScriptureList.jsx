@@ -6,7 +6,7 @@ import {
     useRouteMatch,
     useParams
 } from 'react-router-dom';
-import getScriptureData from '../fetch-req/scriptures/getScriptureData';
+import getScriptureData from '../../fetch-req/scriptures/getScriptureData';
 import '../styles/ScriptureList.scss';
 const clean = require('../util/cleanScriptureName.js');
 
@@ -22,7 +22,6 @@ const ScriptureList = (props) => {
         if (oldUrl !== url) {
             if (isLeaf) {
                 getScriptureData(url, (newData) => {
-                    console.log(newData)
                     setData(newData);
                     setOldUrl(url);
                 });
@@ -38,8 +37,6 @@ const ScriptureList = (props) => {
     });
 
     
-    // console.log(url.split('/'))
-    // console.log(data)
     return (
         <div className='SCRIPTURE-LIST'>
             <div className='SCRIPTURE-LIST__ROW'>

@@ -1,16 +1,31 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useTBTheme, useTBTheme as useTheme } from './theme/useTBTheme';
+// @ts-ignore
+import { QueryClient, QueryClientProvider } from 'react-query';
 
+import AppRouter from './AppRouter';
+import { useTBTheme as useTheme } from './theme/useTBTheme';
+import ThemeSetter from './theme/ThemeSetter';
+
+const queryClient = new QueryClient();
+ 
 const App = () => {
     const {
         theme,
         setTheme,
     } = useApp();
     return (
-        <ThemeProvider theme={theme}>
-
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={theme}>
+                <AppRouter 
+                    themeSetter={
+                        <ThemeSetter 
+                            setTheme={setTheme} 
+                        />
+                    } 
+                />
+            </ThemeProvider>
+        </QueryClientProvider>
     );
 }
 

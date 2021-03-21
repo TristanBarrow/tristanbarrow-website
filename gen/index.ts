@@ -1,5 +1,4 @@
 import { writeFileSync } from 'fs';
-import { join } from 'path';
 import all from './templates/all.template';
 
 let home = `${__dirname}`;

@@ -16,6 +16,7 @@ export const user = (app: Express) => {
             }
             if (result.success) {
                 req.session.loggedIn = true;
+                req.session.user_id = result.user_id;
                 req.session.username = result.username;
                 req.session.isAdmin = result.isAdmin;
                 res.json({ success: true, message: "Logged In"});
@@ -28,7 +29,7 @@ export const user = (app: Express) => {
     app.get('/api/user/status', auth.std, (req: Request, res: Response) => {
         res.json({
             success: true, 
-            user: req!.session!.username,
+            user: req.session.username,
             isAdmin: req.session.isAdmin
         });
     });

@@ -60,7 +60,7 @@ export const login = (
     callback: any
 ) => {
 
-    const selectUserQuery = 'SELECT username, password, isadmin FROM users WHERE username = $1;';
+    const selectUserQuery = 'SELECT id, username, password, isadmin FROM users WHERE username = $1;';
     query(selectUserQuery, [username], (err: Error, result: any) => {
         if (result.rows.length === 0) {
             callback(err, { success: false, message: "User Does Not Exist"})
@@ -69,10 +69,12 @@ export const login = (
                 if (error) callback(error, null);
                 if (passwordIsCorrect) {
                     const isAdmin = result.rows[0].isadmin;
+                    const user_id = result.rows[0].id;
                     callback(error, {
                         ...USER_LOGGED_IN, 
                         username, 
                         isAdmin,  
+                        user_id,
                     });
                 } else {
                     callback(error, USER_PASSWORD_INCORRECT);

@@ -1,5 +1,5 @@
-import jsonParser from '../../../middleware/jsonParser';
 import { Express, Request, Response } from 'express';
+import jsonParser from '../../../middleware/jsonParser';
 import * as auth from '../../../middleware/auth';
 import * as dbTodo from '../../database/gen/todo';
 

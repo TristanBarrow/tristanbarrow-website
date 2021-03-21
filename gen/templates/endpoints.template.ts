@@ -1,5 +1,9 @@
 import { ConfigObject } from '../config';
 
+type Endpoint = {
+    location: string[]
+    template: string
+}
 
 export const generateEndpoint = (config: ConfigObject) => {
     const location = ['src', 'backend', 'api', 'endpoints', 'gen', `${config.name}.ts`];

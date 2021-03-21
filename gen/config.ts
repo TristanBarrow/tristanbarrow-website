@@ -37,7 +37,7 @@ type CrudOp = {
     perm: Permission
 }
 
-type ConfigObject = {
+export type ConfigObject = {
     name: string
     curd: CrudOp[]
     props: Prop[]

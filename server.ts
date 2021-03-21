@@ -3,8 +3,10 @@ import session from 'express-session';
 import { join } from 'path';
 import { pool } from './src/backend/api/database/pool';
 import * as connectPgSimple from 'connect-pg-simple';
-import endpoints from './src/backend/api/endpoints/all';
+import endpoints from './src/backend/api/endpoints/gen/all';
+
 require('dotenv').config();
+
 const pgSession = connectPgSimple.default(session);
 const app: Express = express();
 

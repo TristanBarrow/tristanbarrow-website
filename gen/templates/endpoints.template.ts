@@ -1,8 +1,33 @@
-const generateEndpointsTemplate = () => {
+import { ConfigObject } from '../config';
+
+
+export const generateEndpoint = (config: ConfigObject) => {
+    const location = ['src', 'backend', 'api', 'endpoints', 'gen', `${config.name}.ts`];
+    return {
+        location,
+        template: generateEndpointsTemplate({
+            name: config.name,
+            capitalized: 'Todo'
+        })
+    }
+}
+
+
+
+type GenerateEndpointsTemplateArgs = {
+    name: string
+    capitalized: string
+}
+
+export const generateEndpointsTemplate = ({
+    name,
+    capitalized,
+}: GenerateEndpointsTemplateArgs): string => {
+
 return `import { Express, Request, Response } from 'express';
 import jsonParser from '../../../middleware/jsonParser';
 import * as auth from '../../../middleware/auth';
-import * as dbTodo from '../../database/gen/todo';
+import * as db${capitalized} from '../../database/gen/${name}';
 
 export const todo = (app: Express) => {
 

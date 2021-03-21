@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     JAVASCRIPT: 'JavaScript', 
     REACTJS: 'React JS', 
     AJAX: 'Ajax',

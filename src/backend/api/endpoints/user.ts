@@ -1,12 +1,14 @@
-const bodyParser = require('body-parser');
-const user = require('../database/user.js');
-const auth = require('../../middleware/auth.js');
+import { Express, Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import * as user_db from '../database/user';
+import * as auth from '../../middleware/auth';
+
 const jsonParser = bodyParser.json();
 
-module.exports = (app) => {
+export const user = (app: Express) => {
 
-    app.post('/api/login', jsonParser, (req, res) => {
-        user.login(req.body.username, req.body.password, (err, result) => {
+    app.post('/api/login', jsonParser, (req: Request, res: Response) => {
+        user_db.login(req.body.username, req.body.password, (err: any, result: any) => {
             if (err) {
                 console.error(err);
                 res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
@@ -23,24 +25,26 @@ module.exports = (app) => {
         });
     });
 
-    app.get('/api/user/status', auth.std, (req, res) => {
+    app.get('/api/user/status', auth.std, (req: Request, res: Response) => {
         res.json({
             success: true, 
-            user: req.session.username,
+            user: req!.session!.username,
             isAdmin: req.session.isAdmin
         });
     });
 
     app.get('/api/logout', (req, res) => {
-        req.session.destroy();
+        req.session.destroy((err: Error) => {
+            console.error(err);
+        });
         res.json({ 
             success: true,
             message: 'Logged out'
         });
     })
 
-    app.post('/api/user/create', jsonParser, (req, res) => {
-        user.createUser(req.body.username, req.body.password, (err, result) => {
+    app.post('/api/user/create', jsonParser, (req: Request, res: Response) => {
+        user_db.createUser(req.body.username, req.body.password, (err: any, result: any) => {
             if (err) {
                 console.error(err);
                 res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
@@ -51,12 +55,12 @@ module.exports = (app) => {
         })
     });
 
-    app.get('/api/users', auth.tb, (req, res) => {
-        user.getUsers((err, users) => {
+    app.get('/api/users', auth.tb, (req: Request, res: Response) => {
+        user_db.getUsers((err, users) => {
             if (err) {
                 console.error(err);
                 res.json({success: false, message: 'An unknown error has occurred, contact the admin' });
-                throw new Error(err);
+                throw err;
             } else {
                 res.json(users);
             }

@@ -1,4 +1,4 @@
-module.exports = (route, callback) => {
+export default (route, callback) => {
     const fullRoute = '/api' + route;
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

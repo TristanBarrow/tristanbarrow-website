@@ -1,5 +1,5 @@
 
-const std = (req, res, next) => {
+export const std = (req: any, res: any, next: any) => {
     if (req.session.loggedIn) {
         next(); 
     } else {
@@ -9,7 +9,7 @@ const std = (req, res, next) => {
 }
 
 // TODO: always check from database for isAdmin
-const admin = (req, res, next) => {
+export const admin = (req: any, res: any, next: any) => {
     if (req.session.loggedIn && req.session.isAdmin) {
         next();
     } else {
@@ -18,7 +18,7 @@ const admin = (req, res, next) => {
     }
 }
 
-const tb = (req, res, next) => {
+export const tb = (req: any, res: any, next: any) => {
     if (req.session.loggedIn && req.session.username === 'TristanBarrow') {
         next();
     } else {
@@ -26,9 +26,3 @@ const tb = (req, res, next) => {
         res.json({success: false, message: "You are not Authenticated"}); 
     }
 }
-
-module.exports = {
-    std,
-    admin,
-    tb
-};

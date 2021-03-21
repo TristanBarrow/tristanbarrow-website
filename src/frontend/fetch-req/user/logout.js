@@ -1,6 +1,6 @@
 
 // LOGOUT
-module.exports = (callback) => {
+export default (callback) => {
     const fullRoute = '/api/logout';
 
     const headers = new Headers();

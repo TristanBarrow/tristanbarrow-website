@@ -8,7 +8,7 @@ const NAMES = {
     jsHist: 'Joseph Smith - History'
 }
 
-module.exports = (name) => {
+export default (name) => {
     if (NAMES[name] !== undefined) return NAMES[name];
     else return name;
 }

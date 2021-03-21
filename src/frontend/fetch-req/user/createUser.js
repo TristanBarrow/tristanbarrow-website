@@ -1,6 +1,6 @@
 
 // CREATE USER
-module.exports = (username, password, callback) => {
+export default (username, password, callback) => {
     const fullRoute = '/api/user/create';
 
     const headers = new Headers();

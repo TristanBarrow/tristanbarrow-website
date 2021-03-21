@@ -1,7 +1,6 @@
-const { resolve } = require('path');
 const path = require('path');
 
-module.exports = {
+export default {
     entry: './src/frontend/index.tsx',
     output: {
         path: path.resolve(__dirname, 'served'),
@@ -26,13 +25,6 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
-            // {
-            //     test: /\.(js|jsx|tsx)$/,
-            //     exclude: /node_modules/,
-            //     use: {
-            //       loader: "babel-loader"
-            //     }
-            // },
             {
                 test: /\.s[ac]ss$/i,
                 use: [

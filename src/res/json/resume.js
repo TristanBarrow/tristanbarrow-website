@@ -1,5 +1,5 @@
-const SK = require('./skills.js');
-module.exports = {
+import SK from './skills';
+export default {
     name: "Tristan Barrow",
     personalInfo: [
         {

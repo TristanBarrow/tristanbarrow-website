@@ -1,6 +1,7 @@
-const index = require('../index.html.js');
+import { Express } from 'express';
+import index from '../index.html';
 
-const application = (app) => {
+export const application = (app: Express) => {
     app.get('/', (req, res) => {
         res.redirect('/app/home');
     });
@@ -18,5 +19,3 @@ const application = (app) => {
     });   
  
 }
-
-module.exports = application;

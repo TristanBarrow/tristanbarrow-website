@@ -1,6 +1,6 @@
 
 // LOGIN
-module.exports = (callback) => {
+export default (callback) => {
     const fullRoute = '/api/user/status';
 
     const headers = new Headers();

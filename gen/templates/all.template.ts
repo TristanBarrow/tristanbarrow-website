@@ -7,7 +7,7 @@ const generateAllRoutes = (routeSets: string[]) => {
 
     if (routeSets.length !== 0) {
         imports = routeSets.map((routeSet: string) => {
-            return `import { ${routeSet} } from './gen/${routeSet}'`;
+            return `import { ${routeSet} } from './${routeSet}'`;
         }).join('\n');
 
         calls = routeSets.map((routeSet: string) => {
@@ -35,8 +35,8 @@ const generateAllRoutesTemplate = ({
 }: GenerateAllRoutesTemplateArgs) => (
 `import { Express } from 'express'; 
 
-import { application } from './application';
-import { user } from './user';
+import { application } from '../application';
+import { user } from '../user';
 ${imports}
 
 export default (app: Express) => {

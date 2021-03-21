@@ -1,4 +1,4 @@
-const location = ['src', 'backend', 'api', 'endpoints', 'all.ts'];
+const location = ['src', 'backend', 'api', 'endpoints', 'gen', 'all.ts'];
 
 
 const generateAllRoutes = (routeSets: string[]) => {

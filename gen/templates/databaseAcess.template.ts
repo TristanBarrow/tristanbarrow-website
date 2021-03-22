@@ -76,8 +76,8 @@ export const read${capitalized}s = (
     getDeleted: boolean,
     callback: (err: Error, rows: any) => void
 ) => {
-    const selectAll${capitalized}Query = 'SELECT id, name, description, is_finished, is_deleted FROM ${name}s WHERE user_id = $1;';
-    query(selectAll${capitalized}Query, [user_id], (err: Error, result: any) => {
+    const selectAll${capitalized}sQuery = 'SELECT id, name, description, is_finished, is_deleted FROM ${name}s WHERE user_id = $1;';
+    query(selectAll${capitalized}sQuery, [user_id], (err: Error, result: any) => {
         let rows: ${capitalized}Row[] = [];
         result.rows.forEach((row: Db${capitalized}Row): void => {
             if (getDeleted || !row.is_deleted) {

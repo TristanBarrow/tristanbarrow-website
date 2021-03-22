@@ -1,4 +1,3 @@
-import { faBroadcastTower } from '@fortawesome/free-solid-svg-icons';
 import { user } from '../../endpoints/user';
 import { query } from '../pool';
 

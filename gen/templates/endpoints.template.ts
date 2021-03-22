@@ -1,42 +1,46 @@
 import { ConfigObject } from '../config';
+import { getAuth } from '../util/getAuth';
+import { Template } from '../types/Template';
 
-type Endpoint = {
-    location: string[]
-    template: string
-}
-
-export const generateEndpoint = (config: ConfigObject) => {
+export const generateEndpoint = (config: ConfigObject): Template => {
     const location = ['src', 'backend', 'api', 'endpoints', 'gen', `${config.name}.ts`];
+    const name = config.name;
+    const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
     return {
         location,
         template: generateEndpointsTemplate({
+            config,
             name: config.name,
-            capitalized: 'Todo'
+            capitalized,
         })
     }
 }
 
-
-
 type GenerateEndpointsTemplateArgs = {
+    config: ConfigObject
     name: string
     capitalized: string
 }
 
 export const generateEndpointsTemplate = ({
+    config,
     name,
     capitalized,
 }: GenerateEndpointsTemplateArgs): string => {
 
-return `import { Express, Request, Response } from 'express';
+const header = `import { Express, Request, Response } from 'express';
 import jsonParser from '../../../middleware/jsonParser';
 import * as auth from '../../../middleware/auth';
 import * as db${capitalized} from '../../database/gen/${name}';
 
-export const todo = (app: Express) => {
+export const ${name} = (app: Express) => {
+`;
 
-    app.post('/api/todos/create', auth.std, jsonParser,  (req: Request, res: Response) => {
-        dbTodo.createTodo(req.session.user_id, req.body, (err: Error, rows: any) => {
+const createAuth = getAuth(config.crud.create); 
+
+const create = `
+    app.post('/api/${name}s/create',${createAuth} jsonParser,  (req: Request, res: Response) => {
+        dbTodo.create${capitalized}(req.session.user_id, req.body, (err: Error, rows: any) => {
             if (err) {
                 console.error(err);
                 res.send({success: false, message: 'Creating the todo failed for some reason.'})
@@ -45,40 +49,71 @@ export const todo = (app: Express) => {
             }
         })
     });
+`;
 
-    app.get('/api/todos', auth.std, (req: Request, res: Response) => {
-        dbTodo.readTodos(req.session.user_id, false, (err: Error, rows: any) => {
+const readAuth = getAuth(config.crud.read); 
+
+const read = `
+    app.get('/api/${name}s',${readAuth} (req: Request, res: Response) => {
+        db${capitalized}.read${capitalized}s(req.session.user_id, false, (err: Error, rows: any) => {
             if (err) {
                 console.log(err);
-                res.send({success: false, message: 'getting the todos failed for some reason.'})
+                res.send({success: false, message: 'getting the ${name}s failed for some reason.'})
             } else {
                 res.send(rows);
             }
         });
     });
+`;
 
-    app.put('/api/todos/update', auth.std, jsonParser, (req: Request, res: Response) => {
-        dbTodo.updateTodo(req.session.user_id, req.body, (err: Error, rows: any) => {
+const updateAuth = getAuth(config.crud.update); 
+
+const update = `
+    app.put('/api/${name}s/update',${updateAuth} jsonParser, (req: Request, res: Response) => {
+        db${capitalized}.update${capitalized}(req.session.user_id, req.body, (err: Error, rows: any) => {
             if (err) {
                 console.error(err);
-                res.send({success: false, message: 'Updating the todo failed for some reason.'})
+                res.send({success: false, message: 'Updating the ${name} failed for some reason.'})
             } else {
                 res.send(rows);
             }
         });
     });
+`;
 
-    app.delete('/api/todos/delete', auth.std, jsonParser, (req: Request, res: Response) => {
-        dbTodo.deleteTodo(req.session.user_id, req.body.id, (err: Error, rows: any) => {
+const removeAuth = getAuth(config.crud.remove); 
+
+const remove = `
+    app.delete('/api/${name}s/delete',${removeAuth} jsonParser, (req: Request, res: Response) => {
+        db${capitalized}.delete${capitalized}(req.session.user_id, req.body.id, (err: Error, rows: any) => {
             if (err) {
                 console.error(err);
-                res.send({success: false, message: 'Deleting the todo failed for some reason.'})
+                res.send({success: false, message: 'Deleting the ${name} failed for some reason.'})
             } else {
                 res.send(rows);
             }
         });
     });
-}`;
+`;
+
+    const footer = `}`;
+
+    let result = header ;
+
+    if (config.crud.all) {
+        result += create;
+        result += read;
+        result += update;
+        result += remove;
+    } else {
+        if (config.crud.create) result += create;
+        if (config.crud.read)   result += read;
+        if (config.crud.update) result += update;
+        if (config.crud.remove) result += remove;
+    }
+
+    result = result + footer;
+    return result;
 }
 
 

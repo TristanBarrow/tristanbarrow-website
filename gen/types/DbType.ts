@@ -1,0 +1,7 @@
+export enum DbType {
+    NUMBER = '',
+    BOOLEAN = '',
+    STRING = 'VARCHAR(255) NOT NULL',
+    LONG_STRING = 'VARCHAR(1023) NOT NULL',
+    LONG_LONG_STRING = 'VARCHAR(4095) NOT NULL',
+}

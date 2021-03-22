@@ -1,23 +1,6 @@
-enum Crud {
-    CREATE = 'CREATE',
-    READ   = 'READ',
-    UPDATE = 'UPDATE',
-    DELETE = 'DELETE',
-}
-
-enum TsType {
-    BOOLEAN = 'boolean', 
-    STRING = 'string',
-    NUMBER = 'number',
-}
-
-enum DbType {
-    NUMBER = '',
-    BOOLEAN = '',
-    STRING = 'VARCHAR(255) NOT NULL',
-    LONG_STRING = 'VARCHAR(1023) NOT NULL',
-    LONG_LONG_STRING = 'VARCHAR(4095) NOT NULL',
-}
+import { Permission } from './types/Permission';
+import { DbType } from './types/DbType';
+import { TsType } from './types/TsType';
 
 type Prop = {
     name: string
@@ -25,33 +8,28 @@ type Prop = {
     tsType: TsType
 }
 
-enum Permission {
-    NONE,
-    STD,
-    AUTH,
-    TB,
-} 
-
-type CrudOp = {
-    crud: Crud
-    perm: Permission
-}
-
 export type ConfigObject = {
     name: string
-    curd: CrudOp[]
+    crud: {
+        all: boolean
+        create?: Permission
+        read?: Permission
+        update?: Permission
+        remove?: Permission
+    }
     props: Prop[]
 }
 
 const CONFIG: ConfigObject[] = [
     {
         name: 'todo',
-        curd: [
-            {crud: Crud.CREATE, perm: Permission.AUTH},
-            {crud: Crud.READ,   perm: Permission.AUTH},
-            {crud: Crud.DELETE, perm: Permission.AUTH},
-            {crud: Crud.UPDATE, perm: Permission.AUTH},
-        ],
+        crud: {
+            all: false,
+            create: Permission.STD,
+            read: Permission.STD,
+            update: Permission.STD, 
+            remove: Permission.STD,
+        },
         props: [
             {name: 'name', dbType: DbType.STRING, tsType: TsType.STRING},
             {name: 'description', dbType: DbType.LONG_STRING, tsType: TsType.STRING},

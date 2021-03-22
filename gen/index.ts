@@ -3,6 +3,8 @@ import config from './config';
 import all from './templates/all.template';
 import { getHomeDir } from './util/getHomeDir';
 import { generateEndpoint } from './templates/endpoints.template';
+import { generateDatabaseAccess } from './templates/databaseAcess.template';
+
 const buildPath = (homeArray: string[], location: string[]) => {
     return homeArray.concat(location).join('/');
 }
@@ -15,9 +17,11 @@ const allLocation = homeArray.concat(allTemplate.location);
 writeFileSync(allLocation.join('/'), allTemplate.template);
 
 const endpointTemplates = config.map(endpoint => generateEndpoint(endpoint));
+const databaseAccessTemplates = config.map(endpoint => generateDatabaseAccess(endpoint));
 
-endpointTemplates.forEach(template => {
+const templates = endpointTemplates.concat(databaseAccessTemplates);
+
+templates.forEach(template => {
     const path = buildPath(homeArray, template.location);
-    console.log(path);
     writeFileSync(path, template.template);
 })

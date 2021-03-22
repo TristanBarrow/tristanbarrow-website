@@ -33,7 +33,7 @@ const CONFIG: ConfigObject[] = [
         props: [
             {name: 'name', dbType: DbType.STRING, tsType: TsType.STRING},
             {name: 'description', dbType: DbType.LONG_STRING, tsType: TsType.STRING},
-            {name: 'isFinished', dbType: DbType.BOOLEAN, tsType: TsType.BOOLEAN},
+            {name: 'is_finished', dbType: DbType.BOOLEAN, tsType: TsType.BOOLEAN},
         ]
     }
 ];

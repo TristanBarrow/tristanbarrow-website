@@ -4,6 +4,7 @@ import { Template } from '../types/Template';
 export const generateDatabaseAccess = (config: ConfigObject): Template => {
     const location = ['src', 'backend', 'api', 'database', 'gen', `${config.name}.ts`];
     const name = config.name;
+    // console.log(config.props);
     const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
     return {
         location,
@@ -26,33 +27,33 @@ export const generateEndpointsTemplate = ({
     name,
     capitalized,
 }: GenerateDatabaseTemplateArgs): string => {
+const props = config.props;
+
+const obj = props.map(prop => {
+    return `    ${prop.name}: ${prop.tsType}`;
+}).join('\n');
 
 const header = `import { user } from '../../endpoints/user';
 import { query } from '../pool';
 
 type Db${capitalized}Row = {
     id: number
-    name: string
-    description: string
-    is_finished: boolean
+${obj}
     is_deleted: boolean
     user_id: number
 }
 
 type ${capitalized}Row = {
     id: number
-    name: string
-    description: string
-    is_finished: boolean   
+${obj} 
 }
 
 type Create${capitalized} = {
-    name: string
-    description: string
-    is_finished: boolean
+${obj}
 }
 `;
-
+const list = props.map(prop => prop.name).join(', ');
+console.log(list);
 const create = `
 export const create${capitalized} = (
     user_id: number,

@@ -14,7 +14,7 @@ type TodoRow = {
     id: number
     name: string
     description: string
-    is_finished: boolean   
+    is_finished: boolean 
 }
 
 type CreateTodo = {

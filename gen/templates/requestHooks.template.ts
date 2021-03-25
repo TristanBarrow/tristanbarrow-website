@@ -5,9 +5,7 @@ const cap = (str: string) => {
     str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-
 export const requestHooksTempl = (config: ConfigObject): Template[] => {
-    const location = ['src', 'frontend', 'requests', 'gen', `useCreate${config.name}.ts`];
     const name = config.name;
     let requests: GenerateRequestHookArgs[] = [];
     if (config.crud.all || !!config.crud.create) {

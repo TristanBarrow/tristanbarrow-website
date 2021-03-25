@@ -5,7 +5,7 @@ const cap = (str: string) => {
     str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export const requestHooksTempl = (config: ConfigObject): Template[] => {
+export const generateRequestHooks = (config: ConfigObject): Template[] => {
     const name = config.name;
     let requests: GenerateRequestHookArgs[] = [];
     if (config.crud.all || !!config.crud.create) {
@@ -30,7 +30,7 @@ export const requestHooksTempl = (config: ConfigObject): Template[] => {
         });
     }
 
-    return requests.map(request => generateRequestHook(request))
+    return requests.map(request => generateRequestHookTemplate(request))
 }
 
 type GenerateRequestHookArgs = {
@@ -39,7 +39,7 @@ type GenerateRequestHookArgs = {
     verb: string
 }
 
-const generateRequestHook = ({
+const generateRequestHookTemplate = ({
     name,
     type,
     verb,

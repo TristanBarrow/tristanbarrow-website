@@ -10,10 +10,11 @@ type Prop = {
 
 export type ConfigObject = {
     name: string
+    auth: Permission
     crud: {
         all: boolean
         create?: Permission
-        read?: Permission
+        read?:   Permission
         update?: Permission
         remove?: Permission
     }
@@ -23,6 +24,7 @@ export type ConfigObject = {
 const CONFIG: ConfigObject[] = [
     {
         name: 'todo',
+        auth: Permission.STD,
         crud: {
             all: false,
             create: Permission.STD,
@@ -38,4 +40,4 @@ const CONFIG: ConfigObject[] = [
     }
 ];
 
-export default CONFIG
+export default CONFIG;

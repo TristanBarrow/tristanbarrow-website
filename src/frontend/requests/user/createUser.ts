@@ -1,16 +1,17 @@
 
-// LOGOUT
-export default (callback) => {
-    const fullRoute = '/api/logout';
+// CREATE USER
+export default (username: string, password: string, callback: any) => {
+    const fullRoute = '/api/user/create';
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     
     const request = new Request(fullRoute, {
-        method: 'GET',
+        method: 'POST',
         headers,
-        mode: 'same-origin'
+        mode: 'same-origin',
+        body: JSON.stringify({username, password}),
     });
 
     fetch(request)

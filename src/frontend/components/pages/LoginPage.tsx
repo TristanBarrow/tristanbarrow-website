@@ -6,7 +6,7 @@ import Input from '../atomic/Input';
 import Button from '../atomic/Button';
 import { useTextInput } from '../../hooks/useTextInput';
 import { usePasswordInput } from '../../hooks/usePasswordInput';
-import { useLoginRequest } from '../../fetch-req/user/useLoginRequest';
+import { useLoginRequest } from '../../requests/user/useLoginRequest';
 
 const Page = styled.div`
     width: 100vw;
@@ -122,7 +122,6 @@ const useLoginPage = () => {
     const loginBinding = useLoginRequest();
     const { value:username, bind: bindUsername } = useTextInput('', 'Username');
     const { value:password, bind: bindPassword } = usePasswordInput('', 'Password');
-
     const [error, setError] = useState({success: true, message: null})
     const clearError = () => setError({success: true, message: null})
 

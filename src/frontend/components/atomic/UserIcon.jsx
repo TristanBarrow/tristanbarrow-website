@@ -3,7 +3,7 @@ import SyncLoader from 'react-spinners/SyncLoader';
 import { withRouter } from 'react-router-dom';
 import '../styles/UserIcon.scss';
 
-const getUser = require('../../fetch-req/user/getUser.js');
+const getUser = require('../../requests/user/getUser.js');
 
 const LOGIN = 'Login';
 

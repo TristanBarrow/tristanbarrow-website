@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
-
 import Icon, { IconType } from '../atomic/Icon';
 import { useUserStatus } from '../../hooks/network/useUserStatus';
 import ErrorBoundary from '../boundaries/ErrorBoundary';
 import LoadingBoundary from '../boundaries/LoadingBoundary';
 import { Link } from 'react-router-dom';
+import { ResponseMessage } from '../../../types/network/ResponseMessage';
 
 export type UserStatusTheme = {
     linkColor: string
@@ -14,7 +14,6 @@ export type UserStatusTheme = {
 type CompType = {
     theme: UserStatusTheme
 }
-
 
 const Container = styled.div`
 
@@ -25,10 +24,10 @@ type UserStatusProps = {
 }
 
 const UserStatus = ({ theme }: UserStatusProps) => {
-    const { isLoading, error, data } = useUserStatus();
+    const { isLoading, isError, data } = useUserStatus();
 
     if (isLoading) return <LoadingBoundary />;
-    if (error) return <ErrorBoundary error={error} />
+    if (isError) return <ErrorBoundary error={data as ResponseMessage} />
 
     return (
         <Container>

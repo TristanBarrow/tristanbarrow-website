@@ -5,8 +5,7 @@ import { usePasswordInput } from '../../hooks/usePasswordInput'
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import '../../styles/Login.scss';
-
-const createUser = require('../../fetch-req/user/createUser.js');
+import createUser from '../../requests/user/createUser';
 
 const Page = styled.div`
     width: 100vw;

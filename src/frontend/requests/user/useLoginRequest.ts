@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useQuery } from 'react-query';
 
 export const useLoginRequest = () => {
     const [response, setResponse] = useState(null as any);
 
-    const login = (username: string, password: string): void => {
+    const login = useCallback((username: string, password: string): void => {
         const fullRoute = '/api/login';
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -16,10 +16,11 @@ export const useLoginRequest = () => {
             mode: 'same-origin',
             body: JSON.stringify({username, password}),
         });
-    
+        console.log('reqest made')
         fetch(request)
-            .then((res: Response) => setResponse(res.json()))
-    }
+            .then((res: Response) => res.json())
+            .then(json => setResponse(json));
+    }, []);
 
     return {
         login,

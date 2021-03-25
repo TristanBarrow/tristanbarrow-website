@@ -6,6 +6,7 @@ export const generateEndpoint = (config: ConfigObject): Template => {
     const location = ['src', 'backend', 'api', 'endpoints', 'gen', `${config.name}.ts`];
     const name = config.name;
     const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
+
     return {
         location,
         template: generateEndpointsTemplate({

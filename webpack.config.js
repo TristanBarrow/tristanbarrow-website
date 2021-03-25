@@ -1,6 +1,7 @@
+const { builtinModules } = require('module');
 const path = require('path');
 
-export default {
+module.exports = {
     entry: './src/frontend/index.tsx',
     output: {
         path: path.resolve(__dirname, 'served'),

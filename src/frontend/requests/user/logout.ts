@@ -1,7 +1,7 @@
 
-// LOGIN
-export default (callback) => {
-    const fullRoute = '/api/user/status';
+// LOGOUT
+export default (callback: any) => {
+    const fullRoute = '/api/logout';
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -10,7 +10,7 @@ export default (callback) => {
     const request = new Request(fullRoute, {
         method: 'GET',
         headers,
-        mode: 'same-origin',
+        mode: 'same-origin'
     });
 
     fetch(request)

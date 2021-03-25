@@ -1,8 +1,11 @@
 import React from 'react';
+import { Switch } from 'react-router-dom';
 
 const ProjectsPage = () => {
     return (
-        <div>Projects Page</div>
+        <Switch>
+            <ProjectsPage />
+        </Switch>
     );
 }
 

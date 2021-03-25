@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ScriptureList from './ScriptureList.jsx';
-const getKeys = require('../../fetch-req/scriptures/getScriptureData.js');
+const getKeys = require('../../requests/scriptures/getScriptureData.js');
 
 class Scriptures extends Component {
     constructor(props) {

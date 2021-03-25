@@ -6,7 +6,7 @@ import {
     useRouteMatch,
     useParams
 } from 'react-router-dom';
-import getScriptureData from '../../fetch-req/scriptures/getScriptureData';
+import getScriptureData from '../../requests/scriptures/getScriptureData';
 import '../styles/ScriptureList.scss';
 const clean = require('../util/cleanScriptureName.js');
 

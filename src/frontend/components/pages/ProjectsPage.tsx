@@ -2,10 +2,9 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 
 const ProjectsPage = () => {
-    return (
-        <Switch>
-            <ProjectsPage />
-        </Switch>
+    return ( <div>proj</div>
+        // <Switch>
+        // </Switch>
     );
 }
 

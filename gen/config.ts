@@ -38,22 +38,22 @@ const CONFIG: ConfigObject[] = [
             {name: 'is_finished', dbType: DbType.BOOLEAN_FALSE, tsType: TsType.BOOLEAN},
         ]
     },
-    // {
-    //     name: 'project',
-    //     auth: Permission.ADMIN,
-    //     crud: {
-    //         all: false,
-    //         create: Permission.ADMIN,
-    //         read: Permission.NONE,
-    //         update: Permission.ADMIN, 
-    //         remove: Permission.ADMIN,
-    //     },
-    //     props: [
-    //         {name: 'title', dbType: DbType.STRING_NN, tsType: TsType.STRING},
-    //         {name: 'sub_title', dbType: DbType.LONG_STRING_NN, tsType: TsType.STRING},
-    //         {name: 'body', dbType: DbType.TEXT_NN, tsType: TsType.STRING},
-    //     ]
-    // }
+    {
+        name: 'project',
+        auth: Permission.ADMIN,
+        crud: {
+            all: false,
+            create: Permission.ADMIN,
+            read: Permission.NONE,
+            update: Permission.ADMIN, 
+            remove: Permission.ADMIN,
+        },
+        props: [
+            {name: 'title', dbType: DbType.STRING_NN, tsType: TsType.STRING},
+            {name: 'sub_title', dbType: DbType.LONG_STRING_NN, tsType: TsType.STRING},
+            {name: 'description', dbType: DbType.TEXT_NN, tsType: TsType.STRING},
+        ]
+    }
 ];
 
 export default CONFIG;

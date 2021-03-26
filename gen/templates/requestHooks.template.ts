@@ -57,8 +57,7 @@ export const use${cap(type)}${cap(name)} = () => {
         route: '/api/${name}s/${type}',
         method: RequestMethod.${verb},
     });
-}
-`;
+}`;
 
     return {
         location: ['src', 'frontend', 'requests', 'gen', name, `use${cap(type)}${cap(name)}.ts`],

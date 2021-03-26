@@ -2,7 +2,7 @@ import { ConfigObject } from '../config';
 import { Template } from '../types/Template'
 
 const cap = (str: string) => {
-    str.charAt(0).toUpperCase() + str.slice(1);
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export const generateRequestHooks = (config: ConfigObject): Template[] => {
@@ -30,7 +30,9 @@ export const generateRequestHooks = (config: ConfigObject): Template[] => {
         });
     }
 
-    return requests.map(request => generateRequestHookTemplate(request))
+    const templates = requests.map(request => generateRequestHookTemplate(request));
+    return templates;
+
 }
 
 type GenerateRequestHookArgs = {
@@ -44,10 +46,11 @@ const generateRequestHookTemplate = ({
     type,
     verb,
 }: GenerateRequestHookArgs): Template => {
+    console.log(name, type, verb)
     const template = `import { useRequest } from '../../useRequest';
 import { RequestMethod } from '../../../../types/network/RequestMethod';
 import { ResponseMessage } from '../../../../types/network/ResponseMessage';
-import { ${type}${cap(name)}Request } from '../../../../types/network/gen/${name}';
+import { ${cap(type)}${cap(name)}Request } from '../../../../types/network/gen/${name}';
 
 export const use${cap(type)}${cap(name)} = () => {
     return useRequest<${cap(type)}${cap(name)}Request, ResponseMessage>({
@@ -58,7 +61,7 @@ export const use${cap(type)}${cap(name)} = () => {
 `;
 
     return {
-        location: ['src', 'frontend', 'requests', 'gen', `use${cap(type)}${cap(name)}.ts`],
+        location: ['src', 'frontend', 'requests', 'gen', name, `use${cap(type)}${cap(name)}.ts`],
         template
     }
 }

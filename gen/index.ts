@@ -20,13 +20,17 @@ writeFileSync(allLocation.join('/'), allTemplate.template);
 
 const endpointTemplates = config.map(endpoint => generateEndpoint(endpoint));
 const databaseAccessTemplates = config.map(database => generateDatabaseAccess(database));
-const requestHookTemplates: Template[] = [].concat([...config.map(value => generateRequestHooks(value))]);
-const templates: Template[] = []
+const requestHookTemplates: Template[][] = config.map(configItem => generateRequestHooks(configItem));
+
+let templates: Template[] = []
     .concat(endpointTemplates)
-    .concat(databaseAccessTemplates)
-    .concat(requestHookTemplates)
+    .concat(databaseAccessTemplates);
+
+requestHookTemplates.forEach((templateArray: Template[]) => {
+    templateArray.forEach((template => templates.push(template)));
+});
 
 templates.forEach(template => {
     const path = buildPath(homeArray, template.location);
     writeFileSync(path, template.template);
-})
+});

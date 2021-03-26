@@ -4,7 +4,6 @@ import { Template } from '../types/Template';
 export const generateDatabaseAccess = (config: ConfigObject): Template => {
     const location = ['src', 'backend', 'api', 'database', 'gen', `${config.name}.ts`];
     const name = config.name;
-    // console.log(config.props);
     const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
     return {
         location,
@@ -53,7 +52,6 @@ ${obj}
 }
 `;
 const basic_list = props.map(prop => prop.name).join(', ');
-console.log(basic_list);
 const create = `
 export const create${capitalized} = (
     user_id: number,

@@ -5,7 +5,7 @@ import { UpdateTodoRequest } from '../../../../types/network/gen/todo';
 
 export const useUpdateTodo = () => {
     return useRequest<UpdateTodoRequest, ResponseMessage>({
-        route: '/api/todos/create',
+        route: '/api/todos/update',
         method: RequestMethod.PUT,
     });
 }

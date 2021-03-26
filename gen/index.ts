@@ -2,6 +2,7 @@ import { writeFileSync } from 'fs';
 import config from './config';
 import all from './templates/all.template';
 import { getHomeDir } from './util/getHomeDir';
+import { generateSql } from './templates/sql.template';
 import { generateEndpoint } from './templates/endpoints.template';
 import { generateDatabaseAccess } from './templates/databaseAcess.template';
 import { generateRequestHooks } from './templates/requestHooks.template';
@@ -23,8 +24,10 @@ const endpointTemplates = config.map(endpoint => generateEndpoint(endpoint));
 const databaseAccessTemplates = config.map(database => generateDatabaseAccess(database));
 const subscriptionHookTemplates = config.map(configItem => generateSubscriptionHooks(configItem));
 const requestHookTemplates: Template[][] = config.map(configItem => generateRequestHooks(configItem));
+const sqlTemplates = config.map(configItem => generateSql(configItem));
 
 let templates: Template[] = []
+    .concat(sqlTemplates)
     .concat(endpointTemplates)
     .concat(databaseAccessTemplates)
     .concat(subscriptionHookTemplates);

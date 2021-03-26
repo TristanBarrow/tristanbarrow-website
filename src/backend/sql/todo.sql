@@ -1,10 +1,3 @@
-    -- id: number
-    -- name: string
-    -- description: string
-    -- is_finished: boolean
-    -- is_deleted: boolean
-    -- user_id: number
-
 CREATE TABLE todos(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,

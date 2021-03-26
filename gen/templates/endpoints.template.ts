@@ -41,7 +41,7 @@ const createAuth = getAuth(config.crud.create);
 
 const create = `
     app.post('/api/${name}s/create',${createAuth} jsonParser,  (req: Request, res: Response) => {
-        dbTodo.create${capitalized}(req.session.user_id, req.body, (err: Error, rows: any) => {
+        db${capitalized}.create${capitalized}(req.session.user_id, req.body, (err: Error, rows: any) => {
             if (err) {
                 console.error(err);
                 res.send({success: false, message: 'Creating the todo failed for some reason.'})

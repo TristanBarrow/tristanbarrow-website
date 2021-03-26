@@ -44,7 +44,7 @@ const create = `
         db${capitalized}.create${capitalized}(req.session.user_id, req.body, (err: Error, rows: any) => {
             if (err) {
                 console.error(err);
-                res.send({success: false, message: 'Creating the todo failed for some reason.'})
+                res.send({success: false, message: 'Creating the ${name} failed for some reason.'})
             } else {
                 res.send(rows);
             }
@@ -59,7 +59,7 @@ const read = `
         db${capitalized}.read${capitalized}s(req.session.user_id, false, (err: Error, rows: any) => {
             if (err) {
                 console.log(err);
-                res.send({success: false, message: 'getting the ${name}s failed for some reason.'})
+                res.send({success: false, message: 'Getting the ${name}s failed for some reason.'})
             } else {
                 res.send(rows);
             }

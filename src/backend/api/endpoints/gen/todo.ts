@@ -20,7 +20,7 @@ export const todo = (app: Express) => {
         dbTodo.readTodos(req.session.user_id, false, (err: Error, rows: any) => {
             if (err) {
                 console.log(err);
-                res.send({success: false, message: 'getting the todos failed for some reason.'})
+                res.send({success: false, message: 'Getting the todos failed for some reason.'})
             } else {
                 res.send(rows);
             }

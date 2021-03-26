@@ -52,6 +52,7 @@ const CONFIG: ConfigObject[] = [
             {name: 'title', dbType: DbType.STRING_NN, tsType: TsType.STRING},
             {name: 'sub_title', dbType: DbType.LONG_STRING_NN, tsType: TsType.STRING},
             {name: 'description', dbType: DbType.TEXT_NN, tsType: TsType.STRING},
+            {name: 'link', dbType: DbType.STRING_NN, tsType: TsType.STRING},
         ]
     }
 ];

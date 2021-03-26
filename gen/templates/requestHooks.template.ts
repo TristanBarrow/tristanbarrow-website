@@ -46,7 +46,6 @@ const generateRequestHookTemplate = ({
     type,
     verb,
 }: GenerateRequestHookArgs): Template => {
-    console.log(name, type, verb)
     const template = `import { useRequest } from '../../useRequest';
 import { RequestMethod } from '../../../../types/network/RequestMethod';
 import { ResponseMessage } from '../../../../types/network/ResponseMessage';

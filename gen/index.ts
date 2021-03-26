@@ -5,6 +5,7 @@ import { getHomeDir } from './util/getHomeDir';
 import { generateEndpoint } from './templates/endpoints.template';
 import { generateDatabaseAccess } from './templates/databaseAcess.template';
 import { generateRequestHooks } from './templates/requestHooks.template';
+import { generateSubscriptionHooks } from './templates/subscriptionHook.template';
 import { Template } from './types/Template';
 
 const buildPath = (homeArray: string[], location: string[]) => {
@@ -20,11 +21,13 @@ writeFileSync(allLocation.join('/'), allTemplate.template);
 
 const endpointTemplates = config.map(endpoint => generateEndpoint(endpoint));
 const databaseAccessTemplates = config.map(database => generateDatabaseAccess(database));
+const subscriptionHookTemplates = config.map(configItem => generateSubscriptionHooks(configItem));
 const requestHookTemplates: Template[][] = config.map(configItem => generateRequestHooks(configItem));
 
 let templates: Template[] = []
     .concat(endpointTemplates)
-    .concat(databaseAccessTemplates);
+    .concat(databaseAccessTemplates)
+    .concat(subscriptionHookTemplates);
 
 requestHookTemplates.forEach((templateArray: Template[]) => {
     templateArray.forEach((template => templates.push(template)));

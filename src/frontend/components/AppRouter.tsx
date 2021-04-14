@@ -13,6 +13,7 @@ import BlogPage from './pages/BlogPage';
 import CoursesPage from './pages/CoursesPage';
 import LoginPage from './pages/LoginPage';
 import CreateAccountPage from './pages/CreateAccountPage';
+import TodosPage from './pages/TodosPage';
 
 type AppRouterProps = {
     themeSetter: ReactNode
@@ -53,6 +54,9 @@ const AppRouter = ({ themeSetter }: AppRouterProps) => {
                 </Route>
                 <Route path='/create_account'>
                     <CreateAccountPage />
+                </Route>
+                <Route path='/todos'>
+                    <TodosPage />
                 </Route>
             </Switch>
         </Router>

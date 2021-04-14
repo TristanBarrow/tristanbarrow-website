@@ -1,10 +1,17 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import styled from 'styled-components';
+import Link from '../atomic/Link';
+
+const Container = styled.div`
+    font-size: 1.6rem;
+
+`;
 
 const ProjectsPage = () => {
-    return ( <div>proj</div>
-        // <Switch>
-        // </Switch>
+    return (
+        <Container>
+            <Link to='/todos'>Todo's</Link>
+        </Container>
     );
 }
 

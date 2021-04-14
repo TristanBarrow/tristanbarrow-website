@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Link as RouterLink } from 'react-router-dom';
+import Link from '../atomic/Link';
 import UserStatus from './UserStatus';
 
 export type SiteHeaderTheme = {
@@ -45,39 +45,12 @@ const ExternalLinks = styled.div`
 
 const InternalLinks = styled.div``;
 
-
-const linkStyle = css`
-    font-size: ${(props: CompType) => props.theme.textSize};
-    color: ${(props: CompType) => props.theme.linkColor};
-    font-family: ${(props: CompType) => props.theme.font};
-    padding-left: 2rem;
-    padding-right: 2rem;
-    text-decoration: none;
-    // TODO: add responsive design
-
-`;
-
 const UserStatusWrapper = styled.div`
     margin-left: 2.5rem;
 `;
 
-const Link = styled(RouterLink)`
-    ${linkStyle}
-`;
-Link.defaultProps = DEFAULT_THEME;
-
-const A = styled.a`
-    ${linkStyle}
-`;
-A.defaultProps = DEFAULT_THEME;
-
-enum LinkType {
-    EXTERNAL = 'EXTERNAL',
-    INTERNAL = 'INTERNAL',
-}
-
 type HeaderLink = {
-    type: LinkType
+    isExternal: boolean
     ref: string
     text: string
     shouldShow: boolean
@@ -87,13 +60,13 @@ const links: HeaderLink[] = [
     {
         text: 'LinkedIn',
         ref: 'https://www.linkedin.com/in/tristanmbarrow',
-        type: LinkType.EXTERNAL,
+        isExternal: true,
         shouldShow: true,
     },
     {
         text: 'GitHub',
         ref: 'https://github.com/TristanBarrow',
-        type: LinkType.EXTERNAL,
+        isExternal: true,
         shouldShow: true,
     },
 ];
@@ -123,8 +96,8 @@ const SiteHeader = (props: SiteHeaderProps) => {
                 <Link to='/resume'>Resume</Link>
             </InternalLinks>
             <ExternalLinks>
-                <A href='https://www.linkedin.com/in/tristanmbarrow'>LinkedIn</A>
-                <A href='https://github.com/TristanBarrow'>GitHub</A>
+                <Link to='https://www.linkedin.com/in/tristanmbarrow' isExternal >LinkedIn</Link>
+                <Link to='https://github.com/TristanBarrow' isExternal >GitHub</Link>
                 {props.themeSetter}
                 <UserStatusWrapper>
                     <UserStatus />

@@ -7,6 +7,15 @@ import endpoints from './src/backend/api/endpoints/gen/all';
 
 require('dotenv').config();
 
+declare module 'express-session' {
+  export interface SessionData {
+    username: string 
+    isAdmin: boolean
+    user_id: number
+    loggedIn: boolean
+  }
+}
+
 const pgSession = connectPgSimple.default(session);
 const app: Express = express();
 

@@ -1,6 +1,7 @@
 
 export const std = (req: any, res: any, next: any) => {
-    if (req.session.loggedIn) {
+    const { loggedIn } = req.session;
+    if (loggedIn) {
         next(); 
     } else {
         // res.setStatus(403);
@@ -10,7 +11,8 @@ export const std = (req: any, res: any, next: any) => {
 
 // TODO: always check from database for isAdmin
 export const admin = (req: any, res: any, next: any) => {
-    if (req.session.loggedIn && req.session.isAdmin) {
+    const { loggedIn, isAdmin } = req.session;
+    if (loggedIn && isAdmin) {
         next();
     } else {
         // res.setStatus(403);
@@ -19,7 +21,8 @@ export const admin = (req: any, res: any, next: any) => {
 }
 
 export const tb = (req: any, res: any, next: any) => {
-    if (req.session.loggedIn && req.session.username === 'TristanBarrow') {
+    const { loggedIn, isAdmin, username } = req.session;
+    if (loggedIn && isAdmin && username === 'TristanBarrow') {
         next();
     } else {
         // res.setStatus(403);

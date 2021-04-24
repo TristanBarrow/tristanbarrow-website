@@ -1,7 +1,7 @@
 export type CreateWorkoutSetRequest = {
     workout: number
     exercise: number
-    order: number
+    workoutOrder: number
     resistance: number
     reps: number
     side: string
@@ -12,7 +12,7 @@ export type UpdateWorkoutSetRequest = {
     id: number
     workout: number
     exercise: number
-    order: number
+    workoutOrder: number
     resistance: number
     reps: number
     side: string

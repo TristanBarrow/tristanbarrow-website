@@ -1,18 +1,19 @@
 import { useState } from 'react';
 
-export const useTextInput = (initValue, placeholder) => {
+export const usePasswordInput = (initValue: string, placeholder: string) => {
     const [value, setValue] = useState(initValue);
+
     return {
         value,
         clear: () => setValue(''),
         bind: {
-            type: 'text',
+            type: 'password',
             value,
             placeholder,
-            onChange: event => {
-                setValue(event.target.value)
+            onChange: (event: { target: { value: string } }) => {
+                setValue(event.target.value); 
             }
         }
-    }
+    } 
 }
 

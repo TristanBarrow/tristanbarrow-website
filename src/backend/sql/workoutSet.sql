@@ -2,7 +2,7 @@ CREATE TABLE workoutSets(
     id SERIAL PRIMARY KEY,
     workout INTEGER NOT NULL,
     exercise INTEGER NOT NULL,
-    order INTEGER NOT NULL,
+    workoutOrder INTEGER NOT NULL,
     resistance INTEGER NOT NULL,
     reps INTEGER NOT NULL,
     side VARCHAR(255) NOT NULL,

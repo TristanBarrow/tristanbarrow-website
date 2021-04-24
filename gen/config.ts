@@ -99,7 +99,7 @@ const CONFIG: ConfigObject[] = [
         props: [
             {name: 'workout', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
             {name: 'exercise', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
-            {name: 'order', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
+            {name: 'workoutOrder', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
             {name: 'resistance', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
             {name: 'reps', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
             {name: 'side', dbType: DbType.STRING_NN, tsType: TsType.STRING},

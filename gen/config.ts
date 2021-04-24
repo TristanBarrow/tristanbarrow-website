@@ -54,7 +54,58 @@ const CONFIG: ConfigObject[] = [
             {name: 'description', dbType: DbType.TEXT_NN, tsType: TsType.STRING},
             {name: 'link', dbType: DbType.STRING_NN, tsType: TsType.STRING},
         ]
-    }
+    },
+    {
+        name: 'exercise',
+        auth: Permission.NONE,
+        crud: {
+            all: false,
+            create: Permission.ADMIN,
+            read: Permission.NONE,
+            update: Permission.ADMIN, 
+            remove: Permission.DNE,
+        },
+        props: [
+            {name: 'name', dbType: DbType.STRING_NN, tsType: TsType.STRING},
+            {name: 'description', dbType: DbType.LONG_LONG_STRING_NN, tsType: TsType.STRING},
+        ]
+    },
+    {
+        name: 'workout',
+        auth: Permission.NONE,
+        crud: {
+            all: false,
+            create: Permission.STD,
+            read: Permission.STD,
+            update: Permission.STD, 
+            remove: Permission.STD,
+        },
+        props: [
+            {name: 'workout_type', dbType: DbType.STRING_NN, tsType: TsType.STRING},
+            {name: 'date', dbType: DbType.STRING_NN, tsType: TsType.STRING},
+            {name: 'description', dbType: DbType.LONG_STRING_NN, tsType: TsType.STRING},
+        ]
+    },
+    {
+        name: 'workoutSet',
+        auth: Permission.NONE,
+        crud: {
+            all: false,
+            create: Permission.STD,
+            read: Permission.STD,
+            update: Permission.STD, 
+            remove: Permission.STD,
+        },
+        props: [
+            {name: 'workout', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
+            {name: 'exercise', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
+            {name: 'order', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
+            {name: 'resistance', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
+            {name: 'reps', dbType: DbType.INTEGER_NN, tsType: TsType.NUMBER},
+            {name: 'side', dbType: DbType.STRING_NN, tsType: TsType.STRING},
+            {name: 'notes', dbType: DbType.LONG_LONG_STRING, tsType: TsType.STRING},
+        ]
+    },
 ];
 
 export default CONFIG;

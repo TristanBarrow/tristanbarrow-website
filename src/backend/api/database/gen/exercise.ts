@@ -26,7 +26,7 @@ export const createExercise = (
     callback: (err: Error, rows: any) => void
 ) => {
     const { name, description } = exercise;
-    const insertExerciseQuery = 'INSERT INTO exercises(name, description, is_deleted, user_id) VALUES ($1, $2, $3, false, $4);';
+    const insertExerciseQuery = 'INSERT INTO exercises(name, description, is_deleted, user_id) VALUES ($1, $2, false, $3);';
     query(insertExerciseQuery, [name, description, user_id], (err: Error, res: any) => {
         if (err) {
             callback(err, null);

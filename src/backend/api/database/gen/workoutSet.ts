@@ -41,7 +41,7 @@ export const createWorkoutSet = (
     callback: (err: Error, rows: any) => void
 ) => {
     const { workout, exercise, workoutOrder, resistance, reps, side, notes } = workoutSet;
-    const insertWorkoutSetQuery = 'INSERT INTO workoutSets(workout, exercise, workoutOrder, resistance, reps, side, notes, is_deleted, user_id) VALUES ($$1, $2, $3, $4, $5, $6, $7, false, $8);';
+    const insertWorkoutSetQuery = 'INSERT INTO workoutSets(workout, exercise, workoutOrder, resistance, reps, side, notes, is_deleted, user_id) VALUES ($1, $2, $3, false, $4);';
     query(insertWorkoutSetQuery, [workout, exercise, workoutOrder, resistance, reps, side, notes, user_id], (err: Error, res: any) => {
         if (err) {
             callback(err, null);

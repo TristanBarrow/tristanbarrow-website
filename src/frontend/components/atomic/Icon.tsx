@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faCog,
     faPalette,
+    faPlus,
+    faTimes,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,14 +15,18 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 export enum IconType {
     GEAR = 'GEAR',
+    PLUS = 'PLUS',
+    TIMES = 'TIMES',
     THEME = 'THEME',
     PROFILE = 'PROFILE',
 }
 
 const ICONS = {
     [IconType.GEAR]: faCog,
+    [IconType.PLUS]: faPlus,
+    [IconType.TIMES]: faTimes,
     [IconType.THEME]: faPalette,
-    [IconType.PROFILE]: faUser
+    [IconType.PROFILE]: faUser,
 }
 
 type OnClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;

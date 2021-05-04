@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 import Link from '../atomic/Link';
-import UserStatus from './UserStatus';
+import UserStatus from '../molecular/UserStatus';
 
 export type SiteHeaderTheme = {
     linkColor: string

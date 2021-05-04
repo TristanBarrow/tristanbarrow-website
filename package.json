@@ -43,6 +43,8 @@
     "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.8.3",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/react-hooks": "^5.1.2",
     "@types/bcrypt": "^3.0.0",
     "@types/connect-pg-simple": "^4.2.2",
     "@types/dotenv": "^8.2.0",

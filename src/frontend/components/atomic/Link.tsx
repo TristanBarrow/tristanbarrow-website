@@ -23,7 +23,7 @@ const DEFAULT_THEME = {
 }
 
 const linkStyle = css`
-    font-size: ${(props: CompType) => {console.log(props);return props.theme.textSize}};
+    font-size: ${(props: CompType) => {return props.theme.textSize}};
     font-family: ${(props: CompType) => props.theme.font};
     padding-left: 2rem;
     padding-right: 2rem;

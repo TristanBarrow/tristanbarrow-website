@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactChild, ReactChildren, useState } from 'react';
 import BlackoutFrame from '../frames/BlackoutFrame';
 import styled from 'styled-components';
 import Icon, { IconType } from '../atomic/Icon';
@@ -12,28 +12,22 @@ const Header = styled.div`
 `;
 
 const Body = styled.div``;
-const Buttons = styled.div``;
 const Message = styled.div``;
+const Children = styled.div``;
 
-type DuelModalProps = {
+export type BaseModalProps = {
     isShowing: boolean
     message: string
-    leftButtonText: string
-    rightButtonText: string
-    leftButtonAction: () => void
-    rightButtonAction: () => void
+    children?: ReactChild | ReactChildren | undefined
     close: () => void
 }
 
-const DuelModal = ({
+const BaseModal = ({
     isShowing,
     message,
-    leftButtonText,
-    rightButtonText,
-    leftButtonAction,
-    rightButtonAction,
+    children,
     close,
-}: DuelModalProps) => {
+}: BaseModalProps) => {
     if (!isShowing) return null;
     return (
         <BlackoutFrame>
@@ -43,25 +37,20 @@ const DuelModal = ({
                 </Header>
                 <Body>
                     <Message>{message}</Message>
-                    <Buttons>
-                        <button onClick={leftButtonAction}>{leftButtonText}</button>
-                        <button onClick={rightButtonAction}>{rightButtonText}</button>
-                    </Buttons>
+                    <Children>
+                        {(children !== undefined && children !== null) && children}
+                    </Children>
                 </Body>
             </Container>
         </BlackoutFrame>
     );
 }
 
-type UseWithDuelModalArgs = {
+type UseWithBaseModalArgs = {
     message: string
-    leftButtonText: string
-    rightButtonText: string
-    leftButtonAction: () => void
-    rightButtonAction: () => void
 };
 
-export const useWithDuelModal = (args: UseWithDuelModalArgs): UseWithDuelModalBinding => {
+export const useWithBaseModal = (args: UseWithBaseModalArgs): UseWithBaseModalBinding => {
     const [isShowing, setIsShowing] = useState<boolean>(false);
     const open = () => setIsShowing(true);
     const close = () => setIsShowing(false);
@@ -78,10 +67,10 @@ export const useWithDuelModal = (args: UseWithDuelModalArgs): UseWithDuelModalBi
 
 }
 
-type UseWithDuelModalBinding = {
+type UseWithBaseModalBinding = {
     open: () => void
     close: () => void
-    bind: DuelModalProps
+    bind: BaseModalProps
 } 
 
-export default DuelModal;
+export default BaseModal;

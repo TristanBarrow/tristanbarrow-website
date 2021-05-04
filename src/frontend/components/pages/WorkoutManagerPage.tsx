@@ -5,6 +5,8 @@ import Link from '../atomic/Link';
 import styled from 'styled-components';
 import ErrorBoundary from '../boundaries/ErrorBoundary';
 import { useUserStatus } from '../../hooks/network/useUserStatus';
+import { useCreateWorkout } from '../../requests/gen/workout/useCreateWorkout';
+import ButtonModal, { useWithButtonModal } from '../cellular/ButtonModal';
 
 const Container = styled.div`
     font-family: sans-serif;
@@ -20,6 +22,13 @@ const Header = styled.div`
 `;
 
 const WorkoutManagerPage = () => {
+    const modal = useWithButtonModal({ 
+        message: 'hello modal',
+        buttons: [{
+            text: 'Add Workout',
+            action: () => {modal.close()}
+        }]
+    }); 
     const {isSuccess: userIsSuccess, data: userData } = useUserStatus();
     const { isSuccess, data, isError, error } = useWorkoutsData();
     if (userIsSuccess) console.log(userData.isAdmin);
@@ -34,7 +43,7 @@ const WorkoutManagerPage = () => {
                 {userIsSuccess && userData.isAdmin && (
                     <Link to='/edit_exercise'>Add Exercises</Link>
                 )}
-                <Link to='/workout_create'>Create Workout</Link>
+                <button onClick={modal.open}>Add Workout</button>
             </Header>
             {workouts.length === 0 && <div>No Workouts</div>}
             {workouts.map((workout) => (
@@ -42,6 +51,7 @@ const WorkoutManagerPage = () => {
                     {`${workout.date} ${workout.workout_type}`}
                 </div>
             ))}
+            <ButtonModal {...modal.bind} />
         </Container>
     );
 }

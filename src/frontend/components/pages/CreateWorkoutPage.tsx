@@ -1,17 +1,11 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { count } from 'console';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { exercise } from '../../../backend/api/endpoints/gen/exercise';
-import { workout } from '../../../backend/api/endpoints/gen/workout';
 import { UpdateExerciseRequest } from '../../../types/network/gen/exercise';
-import { CreateWorkoutSetRequest, UpdateWorkoutSetRequest } from '../../../types/network/gen/workoutSet';
 import { useNumberInput } from '../../hooks/useNumberInput';
 import { useExercisesData } from '../../requests/gen/exercise/useExercisesData';
 import Icon, { IconType } from '../atomic/Icon';
 import Link from '../atomic/Link';
-import DuelModal, { useWithDuelModal } from '../cellular/DuelModal';
+import ButtonModal, { useWithButtonModal } from '../cellular/ButtonModal';
 import Dropdown, { useWithDropdown } from '../molecular/Dropdown';
 
 const Container = styled.div`
@@ -136,13 +130,15 @@ const CreateWorkoutPage = () => {
     const resistanceInput = useNumberInput(0);
     const repsInput = useNumberInput(0);
     let lastExercise: string = '';
-    const modal = useWithDuelModal({
-        message: 'Message',
-        leftButtonText: 'close',
-        rightButtonText: 'save',
-        leftButtonAction: () => modal.close(),
-        rightButtonAction: () => {},
+    
+    const saveModal = useWithButtonModal({
+        message: 'Are you finished adding exercises to this workout?',
+        leftButtonText: 'Close',
+        rightButtonText: 'Yes, Save',
+        leftButtonAction: () => saveModal.close(),
+        rightButtonAction: () => { },
     });
+
     const onAdd = () => {
         if (dropdown.value === null || 
             repsInput.value === 0
@@ -172,7 +168,7 @@ const CreateWorkoutPage = () => {
     }
 
     const onSave = () => {
-        modal.open();
+        saveModal.open();
     }
 
     return (
@@ -233,7 +229,7 @@ const CreateWorkoutPage = () => {
                     color='#338bd5'
                 />
             </AddExercise>
-            <DuelModal {...modal.bind}/>
+            <ButtonModal {...saveModal.bind}/>
         </Container>
     );
 }

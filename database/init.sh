@@ -6,7 +6,6 @@ if [ $override = y ] || [ $override = yes ]
 then 
     echo Resetting Database...
     cat ./database/init.sql | psql
-    # cat ./database/init.sql | heroku pg:psql
     curl --location --request POST 'localhost:8000/api/user/create' \
     --header 'Content-Type: application/json' \
     --header 'Cookie: connect.sid=s%3A0oJoGA98S0RTIYg2XrdBI88CLHLds6ln.8okDHWKl89bkZnpwGVm2%2FqmHTdKVF1%2Bcu6pjpEr8p%2Bg' \
